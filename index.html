@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0a0d1a">
+<title>Wing Fighter — Légion Manager</title>
+<link rel="manifest" href="manifest.json">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#0a0d1a;--surf:#111827;--surf2:#1a2236;--bdr:#1e2d45;
+  --text:#cce0ff;--textm:#7a9abf;--textd:#3a5a7a;
+  --acc:#00c8ff;--accD:#0099cc;--accG:rgba(0,200,255,0.08);
+  --warn:#ff6b35;--suc:#44ff88;--gold:#ffcc44;
+  --rad:8px;--radL:12px;
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden}
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,13,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.nav-title{font-size:14px;font-weight:700;letter-spacing:0.08em;color:var(--acc)}
+.nav-tabs{display:flex;gap:2px}
+.nav-tab{padding:6px 10px;font-size:11px;background:transparent;border:none;color:var(--textm);cursor:pointer;border-radius:var(--rad);transition:all .15s;letter-spacing:0.04em}
+.nav-tab.on{background:var(--accG);color:var(--acc);border:1px solid rgba(0,200,255,0.2)}
+/* Main */
+.main{padding:68px 12px 24px;max-width:700px;margin:0 auto}
+/* Cards */
+.card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--radL);padding:14px;margin-bottom:12px}
+.card-title{font-size:12px;font-weight:600;color:var(--textm);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--rad);border:1px solid var(--bdr);background:transparent;color:var(--textm);font-size:12px;cursor:pointer;transition:all .15s}
+.btn:hover,.btn:active{background:var(--accG);border-color:rgba(0,200,255,0.3);color:var(--acc)}
+.btn-primary{background:rgba(0,200,255,0.15);border-color:rgba(0,200,255,0.4);color:var(--acc)}
+.btn-danger{background:rgba(255,50,50,0.1);border-color:rgba(255,50,50,0.3);color:#ff5555}
+.btn-sm{padding:5px 10px;font-size:11px}
+/* Inputs */
+input,select,textarea{background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);color:var(--text);padding:8px 10px;font-size:13px;width:100%;outline:none;font-family:inherit}
+input:focus,select:focus,textarea:focus{border-color:rgba(0,200,255,0.4)}
+select option{background:var(--surf)}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:11px;color:var(--textm);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em}
+/* Grid */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+/* Stat boxes */
+.stat{background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);padding:10px 12px;text-align:center}
+.stat .val{font-size:22px;font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat .lbl{font-size:10px;color:var(--textd);margin-top:2px;text-transform:uppercase;letter-spacing:0.06em}
+/* Player cards */
+.player-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--radL);padding:12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s}
+.player-card:hover{border-color:rgba(0,200,255,0.3)}
+.player-card.selected{border-color:var(--acc)}
+.player-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.player-avatar{width:38px;height:38px;border-radius:50%;background:var(--accG);border:1px solid rgba(0,200,255,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.player-name{font-weight:600;font-size:14px;color:var(--text)}
+.player-bp{font-size:11px;color:var(--textm)}
+.badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.badge{display:inline-block;padding:2px 7px;border-radius:20px;font-size:10px;letter-spacing:0.04em}
+.badge-acc{background:var(--accG);color:var(--acc);border:1px solid rgba(0,200,255,0.2)}
+.badge-warn{background:rgba(255,107,53,0.1);color:var(--warn);border:1px solid rgba(255,107,53,0.2)}
+.badge-suc{background:rgba(68,255,136,0.1);color:var(--suc);border:1px solid rgba(68,255,136,0.2)}
+.badge-gold{background:rgba(255,204,68,0.1);color:var(--gold);border:1px solid rgba(255,204,68,0.2)}
+/* Slots */
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.slot{background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);padding:8px;text-align:center}
+.slot .slot-type{font-size:9px;color:var(--textd);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.slot .slot-val{font-size:11px;color:var(--text);font-weight:500;line-height:1.3}
+/* Event rows */
+.event-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);margin-bottom:6px}
+.event-row .ev-name{font-size:13px;font-weight:500}
+.event-row .ev-score{font-size:14px;font-family:monospace;color:var(--acc)}
+/* Rankings */
+.rank-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--bdr)}
+.rank-row:last-child{border-bottom:none}
+.rank-num{font-size:12px;color:var(--textd);width:24px;text-align:right;flex-shrink:0}
+.rank-name{flex:1;font-size:13px}
+.rank-score{font-size:13px;font-family:monospace;color:var(--acc)}
+/* PvP mini */
+.mult-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--bdr);font-size:12px}
+.mult-row:last-child{border-bottom:none}
+.mult-lbl{color:var(--textm)}
+.mult-val{font-family:monospace;color:var(--acc)}
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:flex-end}
+.modal{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--radL) var(--radL) 0 0;width:100%;max-height:90vh;overflow-y:auto;padding:16px}
+.modal-title{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+/* Tabs */
+.tabs{display:flex;gap:4px;margin-bottom:14px;background:var(--surf2);padding:4px;border-radius:var(--rad)}
+.tab{flex:1;padding:7px;text-align:center;font-size:11px;border-radius:6px;cursor:pointer;background:transparent;border:none;color:var(--textm);transition:all .15s}
+.tab.on{background:var(--surf);color:var(--acc);border:1px solid var(--bdr)}
+/* Misc */
+.sep{height:1px;background:var(--bdr);margin:12px 0}
+.empty{text-align:center;color:var(--textd);padding:32px 16px;font-size:13px}
+.row{display:flex;gap:8px;align-items:center}
+.flex1{flex:1}
+.mt8{margin-top:8px}
+.scrollX{overflow-x:auto}
+/* PvP Calc */
+.calc-result{background:var(--surf2);border:1px solid rgba(0,200,255,0.2);border-radius:var(--rad);padding:10px 14px;margin-bottom:8px}
+.calc-result .cr-lbl{font-size:10px;color:var(--textm);text-transform:uppercase;letter-spacing:0.06em}
+.calc-result .cr-val{font-size:20px;font-family:monospace;font-weight:700;color:var(--acc)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+const {useState,useEffect,useMemo,useRef}=React;
+
+// ─── CONSTANTS ───────────────────────────────────────────────────────────────
+const WEAPONS=[
+  {key:'MG',label:'Main Gun'},
+  {key:'WG',label:'Wing Gun'},
+  {key:'MS',label:'Missile'},
+  {key:'AR',label:'Armor'},
+  {key:'FT',label:'Fighter'},
+  {key:'DR',label:'Drones'},
+];
+const MG_WEAPONS=['Conqueror MG','Destroyer MG','Thor MG','Titan MG','Autre'];
+const WG_WEAPONS=['Conqueror WG','Destroyer WG','Titan WG','Autre'];
+const MS_WEAPONS=['Conqueror MS','Destroyer MS','Titan MS','Autre'];
+const AR_WEAPONS=['Conqueror AR','Destroyer AR','Titan AR','Autre'];
+const FT_WEAPONS=['Hardrock','Thane','Conqueror Fighter','Destroyer Fighter','Autre'];
+const DR_OPTIONS=['Apus','Sagi','Draco','Lyra','Cerberus','Orion','Aquila','Autre'];
+const EVENTS=['Legion War','Boss Challenge','Tournoi','Legion Hunt'];
+const EVENT_COLORS={
+  'Legion War':'var(--warn)',
+  'Boss Challenge':'var(--gold)',
+  'Tournoi':'var(--acc)',
+  'Legion Hunt':'var(--suc)',
+};
+const SLOTS_OPTIONS={MG:MG_WEAPONS,WG:WG_WEAPONS,MS:MS_WEAPONS,AR:AR_WEAPONS,FT:FT_WEAPONS,DR:DR_OPTIONS};
+const EMOJIS=['✈️','⚔️','🔥','⚡','🌊','🎯','🐉','🦅','🛡️','💎'];
+
+// ─── STORAGE ─────────────────────────────────────────────────────────────────
+function load(key,def){try{const v=localStorage.getItem(key);return v?JSON.parse(v):def;}catch{return def;}}
+function save(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch{}}
+
+// ─── PvP FORMULAS ─────────────────────────────────────────────────────────────
+function F(x){return x>=0?1+x:1/(1+Math.abs(x));}
+function calcDmg(stats){
+  const{mga=0,wga=0,msa=0,titan=false,db=0,ed=0,di=0,dr=0,fi=0,fd=0,mgType='conqueror',mgIR=0,wgIR=0,msIR=0}=stats;
+  const f=titan?1.3:1;
+  const aMGA=f*mga,aWGA=f*wga,aMSA=f*msa,TAA=aMGA+aWGA+aMSA;
+  const DBD=db-ed,DBDMULT=F(DBD/1000);
+  const IR=di-dr,IRMULT=F(IR/100);
+  const FID=100+fi-fd;
+  const FIDMULT=FID>=50?FID/100:50/(100+2*(50-FID));
+  const mgCoeff=mgType==='conqueror'?0.07575:0.078755;
+  return{
+    mg:Math.round(mgCoeff*aMGA*DBDMULT*F((IR+mgIR)/100)*FIDMULT),
+    wg:Math.round(0.09*aWGA*DBDMULT*F((IR+wgIR)/100)*FIDMULT),
+    ms:Math.round(0.225*aMSA*DBDMULT*F((IR+msIR)/100)*FIDMULT),
+    DBDMULT,IRMULT,FIDMULT,TAA:Math.round(TAA)
+  };
+}
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function fmt(n){return Math.round(n).toLocaleString('fr-FR');}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function initPlayer(name=''){
+  return{id:uid(),name,emoji:'✈️',bp:0,rank:'Membre',
+    builds:{MG:'',WG:'',MS:'',AR:'',FT:'',DR:''},
+    stats:{mga:0,wga:0,msa:0,titan:false},
+    notes:'',active:true};
+}
+function initEvent(type,name=''){
+  return{id:uid(),type,name:name||type,date:new Date().toISOString().slice(0,10),scores:{}};
+}
+
+// ─── APP ─────────────────────────────────────────────────────────────────────
+function App(){
+  const[tab,setTab]=useState('dashboard');
+  const[players,setPlayers]=useState(()=>load('wf_players',[]));
+  const[events,setEvents]=useState(()=>load('wf_events',[]));
+  const[modal,setModal]=useState(null);// {type,data}
+
+  useEffect(()=>save('wf_players',players),[players]);
+  useEffect(()=>save('wf_events',events),[events]);
+
+  const activePlayers=players.filter(p=>p.active);
+
+  function addPlayer(data){
+    const p={...initPlayer(data.name),emoji:data.emoji||'✈️',bp:parseInt(data.bp)||0,rank:data.rank||'Membre'};
+    setPlayers(prev=>[...prev,p]);
+  }
+  function updatePlayer(id,updates){
+    setPlayers(prev=>prev.map(p=>p.id===id?{...p,...updates}:p));
+  }
+  function deletePlayer(id){
+    setPlayers(prev=>prev.filter(p=>p.id!==id));
+  }
+
+  function addEvent(data){
+    const ev=initEvent(data.type,data.name);
+    ev.date=data.date||ev.date;
+    setEvents(prev=>[...prev,ev]);
+    return ev.id;
+  }
+  function updateScore(evId,playerId,score){
+    setEvents(prev=>prev.map(ev=>ev.id===evId?{...ev,scores:{...ev.scores,[playerId]:parseInt(score)||0}}:ev));
+  }
+  function deleteEvent(id){setEvents(prev=>prev.filter(e=>e.id!==id));}
+
+  const ctx={players,activePlayers,events,addPlayer,updatePlayer,deletePlayer,addEvent,updateScore,deleteEvent,setModal};
+
+  const TABS=[
+    {id:'dashboard',label:'Accueil'},
+    {id:'players',label:'Joueurs'},
+    {id:'events',label:'Événements'},
+    {id:'pvp',label:'Calc PvP'},
+  ];
+
+  return(
+    <>
+      <nav className="nav">
+        <span className="nav-title">⚔ LÉGION</span>
+        <div className="nav-tabs">
+          {TABS.map(t=>(
+            <button key={t.id} className={`nav-tab${tab===t.id?' on':''}`} onClick={()=>setTab(t.id)}>
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </nav>
+      <div className="main">
+        {tab==='dashboard'&&<Dashboard {...ctx}/>}
+        {tab==='players'&&<Players {...ctx}/>}
+        {tab==='events'&&<Events {...ctx}/>}
+        {tab==='pvp'&&<PvPCalc players={activePlayers}/>}
+      </div>
+      {modal&&<Modal modal={modal} setModal={setModal} ctx={ctx}/>}
+    </>
+  );
+}
+
+// ─── DASHBOARD ───────────────────────────────────────────────────────────────
+function Dashboard({activePlayers,events,setModal}){
+  const lastEvents=events.slice(-5).reverse();
+  const totalEvents=events.length;
+  const topPlayer=useMemo(()=>{
+    if(!activePlayers.length||!events.length)return null;
+    return activePlayers.map(p=>{
+      const total=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
+      return{...p,total};
+    }).sort((a,b)=>b.total-a.total)[0]||null;
+  },[activePlayers,events]);
+
+  const participRate=useMemo(()=>{
+    if(!events.length||!activePlayers.length)return 0;
+    const total=events.reduce((s,e)=>s+Object.keys(e.scores).filter(id=>activePlayers.find(p=>p.id===id)).length,0);
+    return Math.round(total/(events.length*activePlayers.length)*100)||0;
+  },[events,activePlayers]);
+
+  return(
+    <>
+      <div className="g3" style={{marginBottom:12}}>
+        <div className="stat"><div className="val">{activePlayers.length}</div><div className="lbl">Joueurs</div></div>
+        <div className="stat"><div className="val">{totalEvents}</div><div className="lbl">Events</div></div>
+        <div className="stat"><div className="val">{participRate}%</div><div className="lbl">Particip.</div></div>
+      </div>
+
+      {topPlayer&&(
+        <div className="card" style={{borderColor:'rgba(255,204,68,0.3)',background:'rgba(255,204,68,0.04)'}}>
+          <div className="card-title" style={{color:'var(--gold)'}}>MVP de la légion</div>
+          <div style={{display:'flex',alignItems:'center',gap:12}}>
+            <div style={{fontSize:28}}>{topPlayer.emoji}</div>
+            <div>
+              <div style={{fontWeight:700,fontSize:15}}>{topPlayer.name}</div>
+              <div style={{color:'var(--textm)',fontSize:12}}>{fmt(topPlayer.total)} pts cumulés</div>
+            </div>
+            <div style={{marginLeft:'auto',fontSize:24,color:'var(--gold)'}}>🏆</div>
+          </div>
+        </div>
+      )}
+
+      <div className="card">
+        <div className="card-title">Derniers événements</div>
+        {!lastEvents.length&&<div className="empty">Aucun événement enregistré</div>}
+        {lastEvents.map(ev=>{
+          const scores=Object.values(ev.scores);
+          const total=scores.reduce((s,v)=>s+v,0);
+          const participants=scores.filter(v=>v>0).length;
+          return(
+            <div key={ev.id} className="event-row">
+              <div>
+                <div className="ev-name" style={{color:EVENT_COLORS[ev.type]}}>{ev.name}</div>
+                <div style={{fontSize:11,color:'var(--textd)'}}>{ev.date} · {participants} joueurs</div>
+              </div>
+              <div className="ev-score">{fmt(total)}</div>
+            </div>
+          );
+        })}
+      </div>
+
+      {activePlayers.length>0&&events.length>0&&(
+        <div className="card">
+          <div className="card-title">Classement général</div>
+          {activePlayers.map(p=>{
+            const total=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
+            return{...p,total};
+          }).sort((a,b)=>b.total-a.total).slice(0,5).map((p,i)=>(
+            <div key={p.id} className="rank-row">
+              <span className="rank-num">{i+1}</span>
+              <span style={{fontSize:16}}>{p.emoji}</span>
+              <span className="rank-name">{p.name}</span>
+              <span className="rank-score">{fmt(p.total)}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
+// ─── PLAYERS ─────────────────────────────────────────────────────────────────
+function Players({players,activePlayers,events,addPlayer,updatePlayer,deletePlayer,setModal}){
+  const[view,setView]=useState(null);// player id being viewed/edited
+  const[adding,setAdding]=useState(false);
+  const[form,setForm]=useState({name:'',emoji:'✈️',bp:'',rank:'Membre'});
+
+  const vp=view?players.find(p=>p.id===view):null;
+
+  if(vp)return<PlayerDetail player={vp} events={events} update={(u)=>updatePlayer(vp.id,u)} del={()=>{deletePlayer(vp.id);setView(null);}} back={()=>setView(null)}/>;
+
+  return(
+    <>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
+        <div style={{fontSize:13,color:'var(--textm)'}}>
+          {activePlayers.length} joueur{activePlayers.length!==1?'s':''} actif{activePlayers.length!==1?'s':''}
+        </div>
+        <button className="btn btn-primary" onClick={()=>setAdding(true)}>+ Joueur</button>
+      </div>
+
+      {adding&&(
+        <div className="card" style={{borderColor:'rgba(0,200,255,0.3)'}}>
+          <div className="card-title">Nouveau joueur</div>
+          <div style={{display:'flex',gap:6,marginBottom:8,flexWrap:'wrap'}}>
+            {EMOJIS.map(e=>(
+              <button key={e} onClick={()=>setForm(f=>({...f,emoji:e}))}
+                style={{fontSize:18,background:form.emoji===e?'var(--accG)':'transparent',border:`1px solid ${form.emoji===e?'var(--acc)':'var(--bdr)'}`,borderRadius:6,padding:'4px 6px',cursor:'pointer'}}>
+                {e}
+              </button>
+            ))}
+          </div>
+          <div className="g2">
+            <div className="field"><label>Pseudo</label><input value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} placeholder="NomDuJoueur"/></div>
+            <div className="field"><label>BP (puissance)</label><input type="number" value={form.bp} onChange={e=>setForm(f=>({...f,bp:e.target.value}))} placeholder="ex: 15000000"/></div>
+          </div>
+          <div className="field">
+            <label>Rang</label>
+            <select value={form.rank} onChange={e=>setForm(f=>({...f,rank:e.target.value}))}>
+              {['Chef','Co-Chef','Officier','Élite','Membre'].map(r=><option key={r}>{r}</option>)}
+            </select>
+          </div>
+          <div className="row mt8">
+            <button className="btn btn-primary flex1" onClick={()=>{if(!form.name.trim())return;addPlayer(form);setForm({name:'',emoji:'✈️',bp:'',rank:'Membre'});setAdding(false);}}>Ajouter</button>
+            <button className="btn" onClick={()=>setAdding(false)}>Annuler</button>
+          </div>
+        </div>
+      )}
+
+      {!activePlayers.length&&!adding&&<div className="empty">Aucun joueur — commence par en ajouter un</div>}
+
+      {players.map(p=>{
+        const totalScore=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
+        const evCount=events.filter(e=>e.scores[p.id]>0).length;
+        return(
+          <div key={p.id} className="player-card" onClick={()=>setView(p.id)}>
+            <div className="player-header">
+              <div className="player-avatar">{p.emoji}</div>
+              <div style={{flex:1}}>
+                <div className="player-name">{p.name}</div>
+                <div className="player-bp">{p.bp?fmt(p.bp)+' BP':''}</div>
+              </div>
+              <div style={{textAlign:'right'}}>
+                <div style={{fontSize:13,fontFamily:'monospace',color:'var(--acc)'}}>{fmt(totalScore)}</div>
+                <div style={{fontSize:10,color:'var(--textd)'}}>{evCount} event{evCount!==1?'s':''}</div>
+              </div>
+            </div>
+            <div className="badges">
+              <span className={`badge badge-${p.rank==='Chef'?'gold':p.rank==='Officier'||p.rank==='Co-Chef'?'warn':'acc'}`}>{p.rank}</span>
+              {p.builds.MG&&<span className="badge badge-acc">{p.builds.MG}</span>}
+              {p.builds.DR&&<span className="badge badge-warn">{p.builds.DR}</span>}
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+// ─── PLAYER DETAIL ───────────────────────────────────────────────────────────
+function PlayerDetail({player,events,update,del,back}){
+  const[tab,setTab]=useState('build');
+  const[p,setP]=useState(player);
+  const dirty=JSON.stringify(p)!==JSON.stringify(player);
+
+  function save(){update(p);}
+
+  const playerEvents=events.filter(e=>e.scores[p.id]>0).slice(-5).reverse();
+  const totalScore=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
+
+  return(
+    <>
+      <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:14}}>
+        <button className="btn btn-sm" onClick={back}>← Retour</button>
+        <span style={{fontSize:22}}>{p.emoji}</span>
+        <span style={{fontWeight:700,fontSize:16,flex:1}}>{p.name}</span>
+        {dirty&&<button className="btn btn-primary btn-sm" onClick={save}>Sauvegarder</button>}
+        <button className="btn btn-danger btn-sm" onClick={()=>{if(confirm('Supprimer '+p.name+' ?'))del();}}>Suppr.</button>
+      </div>
+
+      <div className="g2" style={{marginBottom:12}}>
+        <div className="field"><label>Pseudo</label><input value={p.name} onChange={e=>setP(x=>({...x,name:e.target.value}))}/></div>
+        <div className="field"><label>BP</label><input type="number" value={p.bp} onChange={e=>setP(x=>({...x,bp:parseInt(e.target.value)||0}))}/></div>
+      </div>
+
+      <div className="g2" style={{marginBottom:12}}>
+        <div className="field">
+          <label>Rang</label>
+          <select value={p.rank} onChange={e=>setP(x=>({...x,rank:e.target.value}))}>
+            {['Chef','Co-Chef','Officier','Élite','Membre'].map(r=><option key={r}>{r}</option>)}
+          </select>
+        </div>
+        <div className="field">
+          <label>Emoji</label>
+          <select value={p.emoji} onChange={e=>setP(x=>({...x,emoji:e.target.value}))}>
+            {EMOJIS.map(e=><option key={e} value={e}>{e}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <div className="tabs">
+        {['build','stats','historique','notes'].map(t=>(
+          <button key={t} className={`tab${tab===t?' on':''}`} onClick={()=>setTab(t)}>{t.charAt(0).toUpperCase()+t.slice(1)}</button>
+        ))}
+      </div>
+
+      {tab==='build'&&(
+        <div className="card">
+          <div className="card-title">Équipement — 6 slots</div>
+          <div className="slots">
+            {WEAPONS.map(w=>(
+              <div key={w.key} className="slot">
+                <div className="slot-type">{w.label}</div>
+                <select style={{fontSize:10,padding:'4px 2px',width:'100%'}}
+                  value={p.builds[w.key]||''}
+                  onChange={e=>setP(x=>({...x,builds:{...x.builds,[w.key]:e.target.value}}))}>
+                  <option value="">—</option>
+                  {(SLOTS_OPTIONS[w.key]||[]).map(o=><option key={o} value={o}>{o}</option>)}
+                </select>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {tab==='stats'&&(
+        <div className="card">
+          <div className="card-title">Stats d'attaque (pour calc PvP)</div>
+          <div className="g2">
+            <div className="field"><label>MG Attack</label><input type="number" value={p.stats?.mga||0} onChange={e=>setP(x=>({...x,stats:{...x.stats,mga:parseInt(e.target.value)||0}}))}/></div>
+            <div className="field"><label>WG Attack</label><input type="number" value={p.stats?.wga||0} onChange={e=>setP(x=>({...x,stats:{...x.stats,wga:parseInt(e.target.value)||0}}))}/></div>
+            <div className="field"><label>MS Attack</label><input type="number" value={p.stats?.msa||0} onChange={e=>setP(x=>({...x,stats:{...x.stats,msa:parseInt(e.target.value)||0}}))}/></div>
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:10,marginTop:6}}>
+            <label style={{fontSize:12,color:'var(--textm)'}}>Titan 5/5</label>
+            <input type="checkbox" checked={!!p.stats?.titan} onChange={e=>setP(x=>({...x,stats:{...x.stats,titan:e.target.checked}}))} style={{width:auto}}/>
+          </div>
+          {(p.stats?.mga||p.stats?.wga||p.stats?.msa)>0&&(()=>{
+            const r=calcDmg(p.stats||{});
+            return(
+              <div style={{marginTop:10}}>
+                <div className="sep"/>
+                <div style={{fontSize:11,color:'var(--textm)',marginBottom:6,textTransform:'uppercase',letterSpacing:'0.06em'}}>Aperçu dégâts (sans modif)</div>
+                <div className="g3">
+                  <div className="calc-result"><div className="cr-lbl">MG</div><div className="cr-val" style={{fontSize:14}}>{fmt(r.mg)}</div></div>
+                  <div className="calc-result"><div className="cr-lbl">WG</div><div className="cr-val" style={{fontSize:14}}>{fmt(r.wg)}</div></div>
+                  <div className="calc-result"><div className="cr-lbl">MS</div><div className="cr-val" style={{fontSize:14}}>{fmt(r.ms)}</div></div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+      )}
+
+      {tab==='historique'&&(
+        <div className="card">
+          <div className="card-title">Historique events</div>
+          <div style={{marginBottom:10,fontSize:13,color:'var(--textm)'}}>Score cumulé : <span style={{color:'var(--acc)',fontFamily:'monospace',fontWeight:700}}>{fmt(totalScore)}</span></div>
+          {!playerEvents.length&&<div className="empty">Pas encore de score enregistré</div>}
+          {playerEvents.map(ev=>(
+            <div key={ev.id} className="event-row">
+              <div>
+                <div style={{color:EVENT_COLORS[ev.type],fontWeight:500,fontSize:13}}>{ev.name}</div>
+                <div style={{fontSize:11,color:'var(--textd)'}}>{ev.date}</div>
+              </div>
+              <div style={{fontFamily:'monospace',color:'var(--acc)',fontSize:14}}>{fmt(ev.scores[p.id])}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {tab==='notes'&&(
+        <div className="card">
+          <div className="card-title">Notes libres</div>
+          <textarea rows={5} value={p.notes||''} onChange={e=>setP(x=>({...x,notes:e.target.value}))} placeholder="Observations, stratégie, disponibilités..."/>
+        </div>
+      )}
+    </>
+  );
+}
+
+// ─── EVENTS ──────────────────────────────────────────────────────────────────
+function Events({activePlayers,events,addEvent,updateScore,deleteEvent}){
+  const[evTab,setEvTab]=useState('list');
+  const[selEv,setSelEv]=useState(null);
+  const[form,setForm]=useState({type:'Legion War',name:'',date:new Date().toISOString().slice(0,10)});
+
+  const sortedEvents=[...events].sort((a,b)=>b.date.localeCompare(a.date));
+  const ev=selEv?events.find(e=>e.id===selEv):null;
+
+  if(ev)return(
+    <>
+      <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:14}}>
+        <button className="btn btn-sm" onClick={()=>setSelEv(null)}>← Retour</button>
+        <span style={{fontWeight:700,fontSize:15,color:EVENT_COLORS[ev.type],flex:1}}>{ev.name}</span>
+        <button className="btn btn-danger btn-sm" onClick={()=>{if(confirm('Supprimer ?')){deleteEvent(ev.id);setSelEv(null);}}}>Suppr.</button>
+      </div>
+      <div style={{fontSize:11,color:'var(--textd)',marginBottom:12}}>{ev.date} · {ev.type}</div>
+      <div className="card">
+        <div className="card-title">Scores des joueurs</div>
+        {!activePlayers.length&&<div className="empty">Ajoute des joueurs d'abord</div>}
+        {activePlayers.map(p=>(
+          <div key={p.id} style={{display:'flex',alignItems:'center',gap:10,marginBottom:8}}>
+            <span style={{fontSize:16,width:24,textAlign:'center'}}>{p.emoji}</span>
+            <span style={{flex:1,fontSize:13}}>{p.name}</span>
+            <input type="number" style={{width:130,textAlign:'right'}}
+              placeholder="Score"
+              value={ev.scores[p.id]||''}
+              onChange={e=>updateScore(ev.id,p.id,e.target.value)}/>
+          </div>
+        ))}
+      </div>
+      {activePlayers.length>0&&Object.keys(ev.scores).length>0&&(
+        <div className="card">
+          <div className="card-title">Classement</div>
+          {activePlayers.map(p=>({...p,score:ev.scores[p.id]||0}))
+            .sort((a,b)=>b.score-a.score)
+            .map((p,i)=>(
+              <div key={p.id} className="rank-row">
+                <span className="rank-num" style={{color:i===0?'var(--gold)':i===1?'var(--acc)':i===2?'var(--warn)':'var(--textd)'}}>{i+1}</span>
+                <span style={{fontSize:16}}>{p.emoji}</span>
+                <span className="rank-name">{p.name}</span>
+                <span className="rank-score">{fmt(p.score)}</span>
+              </div>
+            ))}
+        </div>
+      )}
+    </>
+  );
+
+  return(
+    <>
+      <div className="tabs">
+        <button className={`tab${evTab==='list'?' on':''}`} onClick={()=>setEvTab('list')}>Historique</button>
+        <button className={`tab${evTab==='new'?' on':''}`} onClick={()=>setEvTab('new')}>+ Nouveau</button>
+      </div>
+
+      {evTab==='new'&&(
+        <div className="card" style={{borderColor:'rgba(0,200,255,0.3)'}}>
+          <div className="card-title">Créer un événement</div>
+          <div className="field">
+            <label>Type</label>
+            <select value={form.type} onChange={e=>setForm(f=>({...f,type:e.target.value,name:e.target.value}))}>
+              {EVENTS.map(ev=><option key={ev}>{ev}</option>)}
+            </select>
+          </div>
+          <div className="g2">
+            <div className="field"><label>Nom (optionnel)</label><input value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} placeholder={form.type}/></div>
+            <div className="field"><label>Date</label><input type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))}/></div>
+          </div>
+          <button className="btn btn-primary" style={{width:'100%'}} onClick={()=>{const id=addEvent({...form,name:form.name||form.type});setSelEv(id);setEvTab('list');}}>
+            Créer et saisir les scores
+          </button>
+        </div>
+      )}
+
+      {evTab==='list'&&(
+        <>
+          {!sortedEvents.length&&<div className="empty">Aucun événement — crée-en un</div>}
+          {sortedEvents.map(ev=>{
+            const scores=Object.values(ev.scores);
+            const total=scores.reduce((s,v)=>s+v,0);
+            const parts=scores.filter(v=>v>0).length;
+            return(
+              <div key={ev.id} className="player-card" onClick={()=>setSelEv(ev.id)}>
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                  <div>
+                    <div style={{color:EVENT_COLORS[ev.type],fontWeight:600,fontSize:14}}>{ev.name}</div>
+                    <div style={{fontSize:11,color:'var(--textd)',marginTop:2}}>{ev.date} · {parts}/{activePlayers.length} joueurs</div>
+                  </div>
+                  <div style={{textAlign:'right'}}>
+                    <div style={{fontFamily:'monospace',fontSize:15,color:'var(--acc)'}}>{fmt(total)}</div>
+                    <div style={{fontSize:10,color:'var(--textd)'}}>total légion</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </>
+      )}
+    </>
+  );
+}
+
+// ─── PvP CALC ────────────────────────────────────────────────────────────────
+function PvPCalc({players}){
+  const[sel,setSel]=useState('custom');
+  const[s,setS]=useState({mga:50000,wga:40000,msa:30000,titan:false,db:0,ed:0,di:0,dr:0,fi:0,fd:0,mgType:'conqueror',mgIR:0,wgIR:0,msIR:0});
+  const[calcTab,setCalcTab]=useState('weapons');
+
+  useEffect(()=>{
+    if(sel!=='custom'){
+      const p=players.find(p=>p.id===sel);
+      if(p&&p.stats)setS(prev=>({...prev,...p.stats,mgType:p.builds?.MG?.toLowerCase().includes('conqueror')?'conqueror':'other'}));
+    }
+  },[sel]);
+
+  function upd(k,v){setS(prev=>({...prev,[k]:v}));}
+
+  const r=useMemo(()=>calcDmg(s),[s]);
+  const DBD=s.db-s.ed,IR=s.di-s.dr,FID=100+s.fi-s.fd;
+  const DBDMULT=F(DBD/1000),IRMULT=F(IR/100);
+  const FIDMULT=FID>=50?FID/100:50/(100+2*(50-FID));
+
+  const N=(id,label,step=1000,min=0)=>(
+    <div className="field">
+      <label>{label}</label>
+      <input type="number" value={s[id]} min={min} step={step} onChange={e=>upd(id,parseFloat(e.target.value)||0)}/>
+    </div>
+  );
+
+  return(
+    <>
+      <div className="card">
+        <div className="card-title">Source des stats</div>
+        <select value={sel} onChange={e=>setSel(e.target.value)}>
+          <option value="custom">Saisie manuelle</option>
+          {players.filter(p=>p.stats?.mga).map(p=><option key={p.id} value={p.id}>{p.emoji} {p.name}</option>)}
+        </select>
+      </div>
+
+      <div className="card">
+        <div className="card-title">Attaque de base</div>
+        <div className="g2">
+          {N('mga','MG Attack')}{N('wga','WG Attack')}{N('msa','MS Attack')}
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:8,marginTop:4}}>
+          <label style={{fontSize:12,color:'var(--textm)'}}>Titan 5/5 (×1.3)</label>
+          <input type="checkbox" checked={s.titan} onChange={e=>upd('titan',e.target.checked)} style={{width:'auto'}}/>
+        </div>
+        <div style={{marginTop:8,padding:'8px 12px',background:'var(--surf2)',borderRadius:'var(--rad)',border:'1px solid rgba(0,200,255,0.2)'}}>
+          <div style={{fontSize:10,color:'var(--textm)'}}>TAA</div>
+          <div style={{fontFamily:'monospace',fontSize:18,fontWeight:700,color:'var(--acc)'}}>{fmt(r.TAA)}</div>
+        </div>
+      </div>
+
+      <div className="card">
+        <div className="card-title">Modificateurs globaux</div>
+        <div className="g2">
+          {N('db','Defense Break',100)}{N('ed','Déf. ennemie',100)}
+        </div>
+        <div className="mult-row"><span className="mult-lbl">DBD = {DBD>=0?'+':''}{DBD}</span><span className="mult-val">DBDMULT {DBDMULT.toFixed(3)}×</span></div>
+        <div className="g2 mt8">
+          {N('di','Damage Inc. (X)',5)}{N('dr','Damage Red. ennemi (Y)',5)}
+        </div>
+        <div className="mult-row"><span className="mult-lbl">IR = {IR>=0?'+':''}{IR}</span><span className="mult-val">IRMULT {IRMULT.toFixed(3)}×</span></div>
+        <div className="g2 mt8">
+          {N('fi','Final Dmg Inc.',5)}{N('fd','Final Dmg Dec. ennemi',5)}
+        </div>
+        <div className="mult-row"><span className="mult-lbl">FID = {FID}</span><span className="mult-val">FIDMULT {FIDMULT.toFixed(3)}×</span></div>
+      </div>
+
+      <div className="card">
+        <div className="card-title">Résultats (hit normal)</div>
+        <div className="calc-result"><div className="cr-lbl">Main Gun ({s.mgType==='conqueror'?'Conqueror — coeff 0.07575':'Dest./Thor — coeff 0.07876'})</div><div className="cr-val">{fmt(r.mg)}</div></div>
+        <div className="calc-result"><div className="cr-lbl">Wing Gun — coeff 0.09</div><div className="cr-val">{fmt(r.wg)}</div></div>
+        <div className="calc-result"><div className="cr-lbl">Missile — coeff 0.225</div><div className="cr-val">{fmt(r.ms)}</div></div>
+        <div style={{marginTop:10,padding:'8px 12px',background:'rgba(0,200,255,0.04)',borderRadius:'var(--rad)',border:'1px solid rgba(0,200,255,0.15)'}}>
+          <div style={{fontSize:10,color:'var(--textm)'}}>Salve initiale MG+WG+MS</div>
+          <div style={{fontFamily:'monospace',fontSize:18,fontWeight:700,color:'var(--acc)'}}>{fmt(r.mg+r.wg+r.ms)}</div>
+        </div>
+        <div style={{marginTop:8,display:'flex',gap:4}}>
+          <button className="btn btn-sm flex1" onClick={()=>upd('mgType','conqueror')} style={s.mgType==='conqueror'?{background:'var(--accG)',borderColor:'rgba(0,200,255,0.4)',color:'var(--acc)'}:{}}>Conqueror MG</button>
+          <button className="btn btn-sm flex1" onClick={()=>upd('mgType','other')} style={s.mgType==='other'?{background:'var(--accG)',borderColor:'rgba(0,200,255,0.4)',color:'var(--acc)'}:{}}>Dest./Thor MG</button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ─── MODAL ───────────────────────────────────────────────────────────────────
+function Modal({modal,setModal,ctx}){
+  return(
+    <div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)setModal(null);}}>
+      <div className="modal">
+        <div className="modal-title"><span>{modal.type}</span><button className="btn btn-sm" onClick={()=>setModal(null)}>✕</button></div>
+        <div className="empty">Contenu modal</div>
+      </div>
+    </div>
+  );
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
