@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0a0d1a">
@@ -13,94 +13,104 @@
 :root{
   --bg:#0a0d1a;--surf:#111827;--surf2:#1a2236;--bdr:#1e2d45;
   --text:#cce0ff;--textm:#7a9abf;--textd:#3a5a7a;
-  --acc:#00c8ff;--accD:#0099cc;--accG:rgba(0,200,255,0.08);
-  --warn:#ff6b35;--suc:#44ff88;--gold:#ffcc44;
+  --acc:#00c8ff;--accG:rgba(0,200,255,0.08);
+  --warn:#ff6b35;--warnG:rgba(255,107,53,0.08);
+  --suc:#44ff88;--sucG:rgba(68,255,136,0.08);
+  --gold:#ffcc44;--goldG:rgba(255,204,68,0.08);
+  --red:#ff4444;--redG:rgba(255,68,68,0.08);
+  --pur:#cc88ff;--purG:rgba(200,136,255,0.08);
   --rad:8px;--radL:12px;
 }
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden}
-/* Nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,13,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
-.nav-title{font-size:14px;font-weight:700;letter-spacing:0.08em;color:var(--acc)}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;min-height:100vh}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,13,26,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--bdr);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
+.nav-title{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--acc)}
 .nav-tabs{display:flex;gap:2px}
-.nav-tab{padding:6px 10px;font-size:11px;background:transparent;border:none;color:var(--textm);cursor:pointer;border-radius:var(--rad);transition:all .15s;letter-spacing:0.04em}
-.nav-tab.on{background:var(--accG);color:var(--acc);border:1px solid rgba(0,200,255,0.2)}
-/* Main */
-.main{padding:68px 12px 24px;max-width:700px;margin:0 auto}
-/* Cards */
+.nav-tab{padding:5px 8px;font-size:11px;background:transparent;border:none;color:var(--textm);cursor:pointer;border-radius:var(--rad);white-space:nowrap;font-family:inherit}
+.nav-tab.on{background:var(--accG);color:var(--acc);border:1px solid rgba(0,200,255,0.25)}
+.main{padding:64px 12px 40px;max-width:700px;margin:0 auto}
 .card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--radL);padding:14px;margin-bottom:12px}
-.card-title{font-size:12px;font-weight:600;color:var(--textm);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px}
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--rad);border:1px solid var(--bdr);background:transparent;color:var(--textm);font-size:12px;cursor:pointer;transition:all .15s}
-.btn:hover,.btn:active{background:var(--accG);border-color:rgba(0,200,255,0.3);color:var(--acc)}
-.btn-primary{background:rgba(0,200,255,0.15);border-color:rgba(0,200,255,0.4);color:var(--acc)}
-.btn-danger{background:rgba(255,50,50,0.1);border-color:rgba(255,50,50,0.3);color:#ff5555}
-.btn-sm{padding:5px 10px;font-size:11px}
-/* Inputs */
-input,select,textarea{background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);color:var(--text);padding:8px 10px;font-size:13px;width:100%;outline:none;font-family:inherit}
-input:focus,select:focus,textarea:focus{border-color:rgba(0,200,255,0.4)}
-select option{background:var(--surf)}
-.field{margin-bottom:10px}
-.field label{display:block;font-size:11px;color:var(--textm);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em}
-/* Grid */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-/* Stat boxes */
+.card-title{font-size:11px;font-weight:600;color:var(--textm);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:var(--rad);border:1px solid var(--bdr);background:transparent;color:var(--textm);font-size:12px;cursor:pointer;font-family:inherit}
+.btn:active{opacity:.7}
+.btn-p{background:var(--accG);border-color:rgba(0,200,255,.35);color:var(--acc)}
+.btn-d{background:var(--redG);border-color:rgba(255,68,68,.3);color:var(--red)}
+.btn-w{background:var(--warnG);border-color:rgba(255,107,53,.3);color:var(--warn)}
+.btn-s{background:var(--sucG);border-color:rgba(68,255,136,.3);color:var(--suc)}
+.btn-sm{padding:4px 9px;font-size:11px}
+input,select,textarea{background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);color:var(--text);padding:7px 10px;font-size:13px;width:100%;outline:none;font-family:inherit;-webkit-appearance:none}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--acc)}
+input[type=file]{display:none}
+input:focus,select:focus,textarea:focus{border-color:rgba(0,200,255,.4)}
+select option{background:var(--surf2)}
+.field{margin-bottom:9px}
+.field label{display:flex;justify-content:space-between;font-size:11px;color:var(--textm);margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em}
+.field label span{color:var(--text);font-family:monospace}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
 .stat{background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);padding:10px 12px;text-align:center}
-.stat .val{font-size:22px;font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums}
-.stat .lbl{font-size:10px;color:var(--textd);margin-top:2px;text-transform:uppercase;letter-spacing:0.06em}
-/* Player cards */
-.player-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--radL);padding:12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s}
-.player-card:hover{border-color:rgba(0,200,255,0.3)}
-.player-card.selected{border-color:var(--acc)}
-.player-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.player-avatar{width:38px;height:38px;border-radius:50%;background:var(--accG);border:1px solid rgba(0,200,255,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.player-name{font-weight:600;font-size:14px;color:var(--text)}
-.player-bp{font-size:11px;color:var(--textm)}
-.badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
-.badge{display:inline-block;padding:2px 7px;border-radius:20px;font-size:10px;letter-spacing:0.04em}
-.badge-acc{background:var(--accG);color:var(--acc);border:1px solid rgba(0,200,255,0.2)}
-.badge-warn{background:rgba(255,107,53,0.1);color:var(--warn);border:1px solid rgba(255,107,53,0.2)}
-.badge-suc{background:rgba(68,255,136,0.1);color:var(--suc);border:1px solid rgba(68,255,136,0.2)}
-.badge-gold{background:rgba(255,204,68,0.1);color:var(--gold);border:1px solid rgba(255,204,68,0.2)}
-/* Slots */
-.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.slot{background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);padding:8px;text-align:center}
-.slot .slot-type{font-size:9px;color:var(--textd);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
-.slot .slot-val{font-size:11px;color:var(--text);font-weight:500;line-height:1.3}
-/* Event rows */
-.event-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);margin-bottom:6px}
-.event-row .ev-name{font-size:13px;font-weight:500}
-.event-row .ev-score{font-size:14px;font-family:monospace;color:var(--acc)}
-/* Rankings */
-.rank-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--bdr)}
-.rank-row:last-child{border-bottom:none}
-.rank-num{font-size:12px;color:var(--textd);width:24px;text-align:right;flex-shrink:0}
-.rank-name{flex:1;font-size:13px}
-.rank-score{font-size:13px;font-family:monospace;color:var(--acc)}
-/* PvP mini */
-.mult-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--bdr);font-size:12px}
-.mult-row:last-child{border-bottom:none}
-.mult-lbl{color:var(--textm)}
-.mult-val{font-family:monospace;color:var(--acc)}
-/* Modal */
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:flex-end}
-.modal{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--radL) var(--radL) 0 0;width:100%;max-height:90vh;overflow-y:auto;padding:16px}
-.modal-title{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.stat .val{font-size:20px;font-weight:700;color:var(--acc)}
+.stat .lbl{font-size:10px;color:var(--textd);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.pc{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--radL);padding:12px;margin-bottom:8px;cursor:pointer}
+.pc:active{border-color:var(--acc)}
+.pa{width:36px;height:36px;border-radius:50%;background:var(--accG);border:1px solid rgba(0,200,255,.25);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.badge{display:inline-block;padding:2px 7px;border-radius:20px;font-size:10px;margin:2px}
+.ba{background:var(--accG);color:var(--acc);border:1px solid rgba(0,200,255,.2)}
+.bw{background:var(--warnG);color:var(--warn);border:1px solid rgba(255,107,53,.2)}
+.bs{background:var(--sucG);color:var(--suc);border:1px solid rgba(68,255,136,.2)}
+.bg{background:var(--goldG);color:var(--gold);border:1px solid rgba(255,204,68,.2)}
+.bp{background:var(--purG);color:var(--pur);border:1px solid rgba(200,136,255,.2)}
+.br{background:var(--redG);color:var(--red);border:1px solid rgba(255,68,68,.2)}
+/* Slots grid */
+.slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.slot{background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);padding:7px}
+.slot-type{font-size:9px;color:var(--textd);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+/* Event */
+.ev-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--rad);margin-bottom:6px}
+/* Rank */
+.rr{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--bdr)}
+.rr:last-child{border-bottom:none}
 /* Tabs */
-.tabs{display:flex;gap:4px;margin-bottom:14px;background:var(--surf2);padding:4px;border-radius:var(--rad)}
-.tab{flex:1;padding:7px;text-align:center;font-size:11px;border-radius:6px;cursor:pointer;background:transparent;border:none;color:var(--textm);transition:all .15s}
+.tabs{display:flex;gap:3px;margin-bottom:12px;background:var(--surf2);padding:3px;border-radius:var(--rad)}
+.tab{flex:1;padding:6px;text-align:center;font-size:11px;border-radius:6px;cursor:pointer;background:transparent;border:none;color:var(--textm);font-family:inherit}
 .tab.on{background:var(--surf);color:var(--acc);border:1px solid var(--bdr)}
-/* Misc */
-.sep{height:1px;background:var(--bdr);margin:12px 0}
-.empty{text-align:center;color:var(--textd);padding:32px 16px;font-size:13px}
+.sep{height:1px;background:var(--bdr);margin:10px 0}
+.empty{text-align:center;color:var(--textd);padding:28px 16px;font-size:13px}
 .row{display:flex;gap:8px;align-items:center}
 .flex1{flex:1}
-.mt8{margin-top:8px}
-.scrollX{overflow-x:auto}
-/* PvP Calc */
-.calc-result{background:var(--surf2);border:1px solid rgba(0,200,255,0.2);border-radius:var(--rad);padding:10px 14px;margin-bottom:8px}
-.calc-result .cr-lbl{font-size:10px;color:var(--textm);text-transform:uppercase;letter-spacing:0.06em}
-.calc-result .cr-val{font-size:20px;font-family:monospace;font-weight:700;color:var(--acc)}
+/* PvP calc */
+.cb{background:var(--surf2);border:1px solid rgba(0,200,255,.2);border-radius:var(--rad);padding:10px 14px;margin-bottom:7px}
+.cb .cl{font-size:10px;color:var(--textm);text-transform:uppercase;letter-spacing:.06em}
+.cb .cv{font-size:20px;font-family:monospace;font-weight:700;color:var(--acc)}
+.cb.w{border-color:rgba(255,107,53,.3)}.cb.w .cv{color:var(--warn)}
+.cb.s{border-color:rgba(68,255,136,.3)}.cb.s .cv{color:var(--suc)}
+.cb.g{border-color:rgba(255,204,68,.3)}.cb.g .cv{color:var(--gold)}
+.cb.pu{border-color:rgba(200,136,255,.3)}.cb.pu .cv{color:var(--pur)}
+.cb.r{border-color:rgba(255,68,68,.3)}.cb.r .cv{color:var(--red)}
+.mr{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--bdr);font-size:12px}
+.mr:last-child{border-bottom:none}
+.tog{flex:1;padding:5px;font-size:11px;cursor:pointer;border-radius:var(--rad);background:transparent;border:1px solid var(--bdr);color:var(--textm);font-family:inherit}
+.tog.on{background:var(--accG);border-color:rgba(0,200,255,.35);color:var(--acc);font-weight:600}
+.sh{font-size:11px;font-weight:600;color:var(--acc);text-transform:uppercase;letter-spacing:.08em;margin:12px 0 8px;display:flex;align-items:center;gap:6px}
+.sh::after{content:'';flex:1;height:1px;background:var(--bdr)}
+/* Screenshot scanner */
+.scan-area{border:2px dashed var(--bdr);border-radius:var(--radL);padding:24px;text-align:center;cursor:pointer;transition:border-color .2s}
+.scan-area:hover,.scan-area.over{border-color:var(--acc)}
+.scan-preview{width:100%;border-radius:var(--rad);margin-bottom:10px;max-height:250px;object-fit:contain}
+.result-field{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:var(--surf2);border-radius:var(--rad);margin-bottom:4px;font-size:12px}
+.result-field .rf-lbl{color:var(--textm)}
+.result-field .rf-val{color:var(--acc);font-family:monospace;font-weight:600}
+/* Loading spinner */
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:20px;height:20px;border:2px solid var(--bdr);border-top-color:var(--acc);border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+/* Tag pills for drone selection */
+.tag-grid{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.tag-pill{padding:4px 10px;border-radius:20px;font-size:11px;cursor:pointer;background:transparent;border:1px solid var(--bdr);color:var(--textm);font-family:inherit}
+.tag-pill.on{font-weight:600}
+.tag-pill.burn.on{background:rgba(255,107,53,.15);border-color:var(--warn);color:var(--warn)}
+.tag-pill.elec.on{background:rgba(200,136,255,.15);border-color:var(--pur);color:var(--pur)}
+.tag-pill.refl.on{background:rgba(0,200,255,.15);border-color:var(--acc);color:var(--acc)}
+.tag-pill.shld.on{background:rgba(68,255,136,.15);border-color:var(--suc);color:var(--suc)}
+.tag-pill.mech.on{background:rgba(255,204,68,.15);border-color:var(--gold);color:var(--gold)}
 </style>
 </head>
 <body>
@@ -109,615 +119,762 @@ select option{background:var(--surf)}
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-const {useState,useEffect,useMemo,useRef}=React;
+const{useState,useEffect,useMemo,useRef,useCallback}=React;
 
-// ─── CONSTANTS ───────────────────────────────────────────────────────────────
-const WEAPONS=[
-  {key:'MG',label:'Main Gun'},
-  {key:'WG',label:'Wing Gun'},
-  {key:'MS',label:'Missile'},
-  {key:'AR',label:'Armor'},
-  {key:'FT',label:'Fighter'},
-  {key:'DR',label:'Drones'},
-];
-const MG_WEAPONS=['Conqueror MG','Destroyer MG','Thor MG','Titan MG','Autre'];
-const WG_WEAPONS=['Conqueror WG','Destroyer WG','Titan WG','Autre'];
-const MS_WEAPONS=['Conqueror MS','Destroyer MS','Titan MS','Autre'];
-const AR_WEAPONS=['Conqueror AR','Destroyer AR','Titan AR','Autre'];
-const FT_WEAPONS=['Hardrock','Thane','Conqueror Fighter','Destroyer Fighter','Autre'];
-const DR_OPTIONS=['Apus','Sagi','Draco','Lyra','Cerberus','Orion','Aquila','Autre'];
-const EVENTS=['Legion War','Boss Challenge','Tournoi','Legion Hunt'];
-const EVENT_COLORS={
-  'Legion War':'var(--warn)',
-  'Boss Challenge':'var(--gold)',
-  'Tournoi':'var(--acc)',
-  'Legion Hunt':'var(--suc)',
+// ── LISTES COMPLÈTES ─────────────────────────────────────────────────────
+const MG_LIST=['Conqueror MG','Destroyer MG','Thor MG','Rail Gun','Laser Gun','Heavy Machine Gun','Batarang','Blast Shotgun','Autre'];
+const WG_LIST=['Conqueror WG','Destroyer WG','Thor WG','Crescent WG','Lightning WG','Prism WG','Blazing WG','Winggun Cannon','Autre'];
+const MS_LIST=['Conqueror MS','Destroyer MS','Thor MS','Lightning Missile','Standard Missile','High-Explosive MS','Energy Missile','Autre'];
+const AR_LIST=['Conqueror AR','Destroyer AR','Thor AR','Hardened Armor','Forcefield Armor','Shock Armor','HP Restore Armor','Electrical Armor','Autre'];
+const FT_LIST=['Hardrock','Thane','Conqueror Fighter','Destroyer Fighter','Thor Fighter','Inferno','Phantom','Flash','Killer Hornet','Night Wing','Rattlesnake','Autre'];
+
+// Drones PvP (constellations / mythologiques) — issus du document de formules + connaissances du jeu
+const DRONES={
+  burn:{label:'Brûlant (Burning)',color:'warn',list:['Apus','Sagi','Lyra','Cerberus','Leo','Vulpecula','Pyxis','Lepus','Corvus']},
+  elec:{label:'Électrique (Electric)',color:'pur',list:['Draco','Orion','Aquila','Cygnus','Corvus','Lacerta','Indus','Lynx']},
+  refl:{label:'Réfléchissant (Reflect)',color:'acc',list:['Pavo','Ara','Scutum','Corona','Reticulum']},
+  shld:{label:'Bouclier (Shield)',color:'suc',list:['Unicorn','Medusa','Guard','Knight','Pegasus','Perseus']},
+  mech:{label:'Mech Spirit / Sentinelle',color:'gold',list:['Gridstar','Faeling','Berserk Dragon','Aqua Spirit','Blood Bat','Ladybug','Lich','Snow Maiden','Grus','Phantom Dog']},
+  other:{label:'Autres / Personnalisé',color:'textm',list:['Evil Eye','Fornax','Sagitta','Volans','Musca']},
 };
-const SLOTS_OPTIONS={MG:MG_WEAPONS,WG:WG_WEAPONS,MS:MS_WEAPONS,AR:AR_WEAPONS,FT:FT_WEAPONS,DR:DR_OPTIONS};
-const EMOJIS=['✈️','⚔️','🔥','⚡','🌊','🎯','🐉','🦅','🛡️','💎'];
+const ALL_DRONES=Object.values(DRONES).flatMap(d=>d.list);
+const DRONE_TYPE=(name)=>Object.entries(DRONES).find(([,v])=>v.list.includes(name))?.[0]||'other';
 
-// ─── STORAGE ─────────────────────────────────────────────────────────────────
-function load(key,def){try{const v=localStorage.getItem(key);return v?JSON.parse(v):def;}catch{return def;}}
-function save(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch{}}
+const EVENTS=['Legion War','Boss Challenge','Tournoi','Legion Hunt'];
+const ECOL={'Legion War':'var(--warn)','Boss Challenge':'var(--gold)','Tournoi':'var(--acc)','Legion Hunt':'var(--suc)'};
+const EMOJIS=['✈️','⚔️','🔥','⚡','🌊','🎯','🐉','🦅','🛡️','💎','🚀','👾','🌟','🔱'];
+const RANKS=['Chef','Co-Chef','Officier','Élite','Membre'];
 
-// ─── PvP FORMULAS ─────────────────────────────────────────────────────────────
-function F(x){return x>=0?1+x:1/(1+Math.abs(x));}
-function calcDmg(stats){
-  const{mga=0,wga=0,msa=0,titan=false,db=0,ed=0,di=0,dr=0,fi=0,fd=0,mgType='conqueror',mgIR=0,wgIR=0,msIR=0}=stats;
-  const f=titan?1.3:1;
-  const aMGA=f*mga,aWGA=f*wga,aMSA=f*msa,TAA=aMGA+aWGA+aMSA;
-  const DBD=db-ed,DBDMULT=F(DBD/1000);
-  const IR=di-dr,IRMULT=F(IR/100);
-  const FID=100+fi-fd;
+// ── STORAGE ───────────────────────────────────────────────────────────────
+const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch{return d;}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}};
+
+// ── PvP MATH ──────────────────────────────────────────────────────────────
+const Fx=x=>x>=0?1+x:1/(1+Math.abs(x));
+const fmt=n=>Math.round(n).toLocaleString('fr-FR');
+const fmtM=n=>n.toFixed(4)+'×';
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+function pvpCalc(s){
+  const f=s.titan?1.3:1;
+  const aMGA=f*(s.mga||0),aWGA=f*(s.wga||0),aMSA=f*(s.msa||0),TAA=aMGA+aWGA+aMSA;
+  const DBD=(s.db||0)-(s.ed||0),DBDMULT=Fx(DBD/1000);
+  const IR=(s.di||0)-(s.dr||0),IRMULT=Fx(IR/100);
+  const FID=100+(s.fi||0)-(s.fd||0);
   const FIDMULT=FID>=50?FID/100:50/(100+2*(50-FID));
-  const mgCoeff=mgType==='conqueror'?0.07575:0.078755;
-  return{
-    mg:Math.round(mgCoeff*aMGA*DBDMULT*F((IR+mgIR)/100)*FIDMULT),
-    wg:Math.round(0.09*aWGA*DBDMULT*F((IR+wgIR)/100)*FIDMULT),
-    ms:Math.round(0.225*aMSA*DBDMULT*F((IR+msIR)/100)*FIDMULT),
-    DBDMULT,IRMULT,FIDMULT,TAA:Math.round(TAA)
-  };
+  const mgC=s.mgType==='conqueror'?0.07575:0.078755;
+  const mg=mgC*aMGA*DBDMULT*Fx((IR+(s.mgIR||0))/100)*FIDMULT;
+  const wg=0.09*aWGA*DBDMULT*Fx((IR+(s.wgIR||0))/100)*FIDMULT;
+  const ms=0.225*aMSA*DBDMULT*Fx((IR+(s.msIR||0))/100)*FIDMULT;
+  const DSM=0.0061873,smm=s.smm||4.8;
+  const SEDMULT=((s.sEnh||0)-(s.sEnhDec||0))/100+1;
+  const HEDMULT=Math.max(0,((s.hEnh||0)-(s.hEnhDec||0))/100+1);
+  const mechDmg=DSM*smm*TAA*DBDMULT*IRMULT*FIDMULT;
+  const sentDmg=mechDmg*SEDMULT;
+  const mechHeal=DSM*smm*TAA*HEDMULT;
+  const sentHeal=mechHeal*SEDMULT;
+  const skm=s.skm||3,spm=s.spm||1;
+  const DroneED=clamp(((s.drEnh||0)-(s.drEnhDec||0))/100+1,1,2);
+  const trv=1+(s.trPct||0)/100;
+  const dskDmg=spm*skm*DroneED*DSM*TAA*DBDMULT*Fx((IR+(s.dSkIR||0))/100)*FIDMULT;
+  const dnaDmg=trv*DroneED*DSM*TAA*DBDMULT*Fx((IR+(s.dNaIR||0))/100)*FIDMULT;
+  const burnContrib=(0.7/skm)*(1+(s.bb||0)/100)*dskDmg;
+  const burnTick=burnContrib*(s.bStacks||1)*(1+(s.fStacks||0)*0.25);
+  const gcr=(s.gcr||0)-(s.eCrRes||0);
+  const mgCritP=clamp(gcr+(s.mgLCr||0)-(s.mgLCrR||0),0,80);
+  const hitP=clamp(100+(s.hit||0)-(s.eDodge||0),20,100);
+  const mgCD=0.96/(1+(s.mgSpd||0)/100),wgCD=1.6/(1+(s.wgSpd||0)/100),msCD=4.0/(1+(s.msSpd||0)/100);
+  const dnaCD=1.0/(1+(s.dNaSpd||0)/100),dskCD=3.0/(1+(s.dSkSpd||0)/100);
+  return{aMGA,aWGA,aMSA,TAA,DBD,DBDMULT,IR,IRMULT,FID,FIDMULT,
+    mg:Math.round(mg),wg:Math.round(wg),ms:Math.round(ms),
+    mechDmg:Math.round(mechDmg),sentDmg:Math.round(sentDmg),mechHeal:Math.round(mechHeal),sentHeal:Math.round(sentHeal),
+    SEDMULT,HEDMULT,DroneED,trv,
+    dskDmg:Math.round(dskDmg),dnaDmg:Math.round(dnaDmg),burnContrib:Math.round(burnContrib),burnTick:Math.round(burnTick),
+    gcr,mgCritP,hitP,
+    mgCD:mgCD.toFixed(3),wgCD:wgCD.toFixed(3),msCD:msCD.toFixed(3),dnaCD:dnaCD.toFixed(3),dskCD:dskCD.toFixed(3),
+    mgDPS:Math.round(mg/mgCD),wgDPS:Math.round(wg/wgCD),msDPS:Math.round(ms/msCD)};
 }
 
-// ─── HELPERS ─────────────────────────────────────────────────────────────────
-function fmt(n){return Math.round(n).toLocaleString('fr-FR');}
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
-function initPlayer(name=''){
-  return{id:uid(),name,emoji:'✈️',bp:0,rank:'Membre',
-    builds:{MG:'',WG:'',MS:'',AR:'',FT:'',DR:''},
-    stats:{mga:0,wga:0,msa:0,titan:false},
-    notes:'',active:true};
+// ── ANTHROPIC API ─────────────────────────────────────────────────────────
+async function analyzeScreenshot(base64, apiKey){
+  const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
+    body:JSON.stringify({
+      model:'claude-opus-4-6',
+      max_tokens:1000,
+      messages:[{role:'user',content:[
+        {type:'image',source:{type:'base64',media_type:'image/jpeg',data:base64}},
+        {type:'text',text:`Tu analyses un screenshot du jeu mobile Wing Fighter. Extrait toutes les statistiques visibles et retourne UNIQUEMENT un objet JSON valide (pas de markdown, pas de texte autour), avec ces champs exacts (null si non visible) :
+{
+  "playerName": string|null,
+  "bp": number|null,
+  "mga": number|null,
+  "wga": number|null,
+  "msa": number|null,
+  "titan": boolean|null,
+  "mg": string|null,
+  "wg": string|null,
+  "ms": string|null,
+  "ar": string|null,
+  "ft": string|null,
+  "dr1": string|null,
+  "dr2": string|null,
+  "dr3": string|null,
+  "defBreak": number|null,
+  "critRate": number|null,
+  "hitRate": number|null,
+  "dodgeRate": number|null,
+  "hpTotal": number|null,
+  "notes": string|null
 }
-function initEvent(type,name=''){
-  return{id:uid(),type,name:name||type,date:new Date().toISOString().slice(0,10),scores:{}};
+Exemples de champs : "MG Attack", "WG Attack", "MS Attack", "Crit Rate", "Hit Rate", noms d'équipements. Réponds UNIQUEMENT avec le JSON.`}
+      ]}]
+    })
+  });
+  if(!resp.ok){const e=await resp.json();throw new Error(e.error?.message||'API error '+resp.status);}
+  const data=await resp.json();
+  const text=data.content[0]?.text||'';
+  const clean=text.replace(/```json|```/g,'').trim();
+  return JSON.parse(clean);
 }
 
-// ─── APP ─────────────────────────────────────────────────────────────────────
+// ── HELPERS ───────────────────────────────────────────────────────────────
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const mkPlayer=name=>({id:uid(),name:name||'',emoji:'✈️',bp:0,rank:'Membre',
+  equipment:{mg:'',wg:'',ms:'',ar:'',ft:'',dr1:'',dr2:'',dr3:'',drCustom:'',
+    sentinel1:'',sentinel2:'',mech:''},
+  pvp:{mga:0,wga:0,msa:0,titan:false,mgType:'conqueror',db:0,ed:0,di:0,dr:0,fi:0,fd:0,
+    mgIR:0,wgIR:0,msIR:0,smm:4.8,sEnh:0,sEnhDec:0,hEnh:0,hEnhDec:0,
+    skm:3,spm:1,trPct:0,drEnh:0,drEnhDec:0,dSkIR:0,dNaIR:0,bb:0,bStacks:1,fStacks:0,
+    gcr:50,eCrRes:0,mgLCr:0,mgLCrR:0,hit:0,eDodge:0,mgSpd:0,wgSpd:0,msSpd:0,dNaSpd:0,dSkSpd:0},
+  notes:'',active:true});
+
+// ── APP ───────────────────────────────────────────────────────────────────
 function App(){
-  const[tab,setTab]=useState('dashboard');
-  const[players,setPlayers]=useState(()=>load('wf_players',[]));
-  const[events,setEvents]=useState(()=>load('wf_events',[]));
-  const[modal,setModal]=useState(null);// {type,data}
-
-  useEffect(()=>save('wf_players',players),[players]);
-  useEffect(()=>save('wf_events',events),[events]);
-
-  const activePlayers=players.filter(p=>p.active);
-
-  function addPlayer(data){
-    const p={...initPlayer(data.name),emoji:data.emoji||'✈️',bp:parseInt(data.bp)||0,rank:data.rank||'Membre'};
-    setPlayers(prev=>[...prev,p]);
-  }
-  function updatePlayer(id,updates){
-    setPlayers(prev=>prev.map(p=>p.id===id?{...p,...updates}:p));
-  }
-  function deletePlayer(id){
-    setPlayers(prev=>prev.filter(p=>p.id!==id));
-  }
-
-  function addEvent(data){
-    const ev=initEvent(data.type,data.name);
-    ev.date=data.date||ev.date;
-    setEvents(prev=>[...prev,ev]);
-    return ev.id;
-  }
-  function updateScore(evId,playerId,score){
-    setEvents(prev=>prev.map(ev=>ev.id===evId?{...ev,scores:{...ev.scores,[playerId]:parseInt(score)||0}}:ev));
-  }
-  function deleteEvent(id){setEvents(prev=>prev.filter(e=>e.id!==id));}
-
-  const ctx={players,activePlayers,events,addPlayer,updatePlayer,deletePlayer,addEvent,updateScore,deleteEvent,setModal};
-
-  const TABS=[
-    {id:'dashboard',label:'Accueil'},
-    {id:'players',label:'Joueurs'},
-    {id:'events',label:'Événements'},
-    {id:'pvp',label:'Calc PvP'},
-  ];
-
-  return(
-    <>
-      <nav className="nav">
-        <span className="nav-title">⚔ LÉGION</span>
-        <div className="nav-tabs">
-          {TABS.map(t=>(
-            <button key={t.id} className={`nav-tab${tab===t.id?' on':''}`} onClick={()=>setTab(t.id)}>
-              {t.label}
-            </button>
-          ))}
-        </div>
-      </nav>
-      <div className="main">
-        {tab==='dashboard'&&<Dashboard {...ctx}/>}
-        {tab==='players'&&<Players {...ctx}/>}
-        {tab==='events'&&<Events {...ctx}/>}
-        {tab==='pvp'&&<PvPCalc players={activePlayers}/>}
-      </div>
-      {modal&&<Modal modal={modal} setModal={setModal} ctx={ctx}/>}
-    </>
-  );
+  const[tab,setTab]=useState('home');
+  const[players,setPlayers]=useState(()=>load('wf3_players',[]));
+  const[events,setEvents]=useState(()=>load('wf3_events',[]));
+  useEffect(()=>save('wf3_players',players),[players]);
+  useEffect(()=>save('wf3_events',events),[events]);
+  const active=players.filter(p=>p.active);
+  const ctx={
+    players,events,active,
+    addPlayer:d=>setPlayers(p=>[...p,{...mkPlayer(d.name),emoji:d.emoji||'✈️',bp:parseInt(d.bp)||0,rank:d.rank||'Membre'}]),
+    updatePlayer:(id,u)=>setPlayers(p=>p.map(x=>x.id===id?{...x,...u}:x)),
+    deletePlayer:id=>setPlayers(p=>p.filter(x=>x.id!==id)),
+    addEvent:d=>{const e={id:uid(),type:d.type,name:d.name||d.type,date:d.date||new Date().toISOString().slice(0,10),scores:{}};setEvents(ev=>[...ev,e]);return e.id;},
+    updateScore:(eid,pid,sc)=>setEvents(ev=>ev.map(e=>e.id===eid?{...e,scores:{...e.scores,[pid]:parseInt(sc)||0}}:e)),
+    deleteEvent:id=>setEvents(ev=>ev.filter(e=>e.id!==id)),
+    exportData:()=>{const d=JSON.stringify({players,events,v:3,date:new Date().toISOString()},null,2);const a=document.createElement('a');a.href='data:application/json,'+encodeURIComponent(d);a.download='legion-'+new Date().toISOString().slice(0,10)+'.json';a.click();},
+    importData:file=>{const r=new FileReader();r.onload=e=>{try{const d=JSON.parse(e.target.result);if(d.players)setPlayers(d.players);if(d.events)setEvents(d.events);alert('Import OK — '+d.players?.length+' joueurs, '+d.events?.length+' events');}catch{alert('Fichier invalide.');}};r.readAsText(file);},
+  };
+  const TABS=[{id:'home',l:'Accueil'},{id:'players',l:'Joueurs'},{id:'events',l:'Events'},{id:'pvp',l:'PvP Calc'},{id:'settings',l:'⚙'}];
+  return(<>
+    <nav className="nav">
+      <span className="nav-title">⚔ LÉGION</span>
+      <div className="nav-tabs">{TABS.map(t=><button key={t.id} className={`nav-tab${tab===t.id?' on':''}`} onClick={()=>setTab(t.id)}>{t.l}</button>)}</div>
+    </nav>
+    <div className="main">
+      {tab==='home'&&<Home {...ctx}/>}
+      {tab==='players'&&<Players {...ctx}/>}
+      {tab==='events'&&<Events {...ctx}/>}
+      {tab==='pvp'&&<PvPCalc players={active}/>}
+      {tab==='settings'&&<Settings {...ctx}/>}
+    </div>
+  </>);
 }
 
-// ─── DASHBOARD ───────────────────────────────────────────────────────────────
-function Dashboard({activePlayers,events,setModal}){
-  const lastEvents=events.slice(-5).reverse();
-  const totalEvents=events.length;
-  const topPlayer=useMemo(()=>{
-    if(!activePlayers.length||!events.length)return null;
-    return activePlayers.map(p=>{
-      const total=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
-      return{...p,total};
-    }).sort((a,b)=>b.total-a.total)[0]||null;
-  },[activePlayers,events]);
-
-  const participRate=useMemo(()=>{
-    if(!events.length||!activePlayers.length)return 0;
-    const total=events.reduce((s,e)=>s+Object.keys(e.scores).filter(id=>activePlayers.find(p=>p.id===id)).length,0);
-    return Math.round(total/(events.length*activePlayers.length)*100)||0;
-  },[events,activePlayers]);
-
-  return(
-    <>
-      <div className="g3" style={{marginBottom:12}}>
-        <div className="stat"><div className="val">{activePlayers.length}</div><div className="lbl">Joueurs</div></div>
-        <div className="stat"><div className="val">{totalEvents}</div><div className="lbl">Events</div></div>
-        <div className="stat"><div className="val">{participRate}%</div><div className="lbl">Particip.</div></div>
+// ── HOME ──────────────────────────────────────────────────────────────────
+function Home({active,events}){
+  const byP=useMemo(()=>active.map(p=>({...p,total:events.reduce((s,e)=>s+(e.scores[p.id]||0),0)})).sort((a,b)=>b.total-a.total),[active,events]);
+  const last=[...events].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4);
+  const rate=useMemo(()=>{if(!events.length||!active.length)return 0;const t=events.reduce((s,e)=>s+Object.keys(e.scores).filter(id=>active.find(p=>p.id===id)).length,0);return Math.round(t/(events.length*active.length)*100);},[events,active]);
+  const mvp=byP[0];
+  return(<>
+    <div className="g3" style={{marginBottom:12}}>
+      <div className="stat"><div className="val">{active.length}</div><div className="lbl">Joueurs</div></div>
+      <div className="stat"><div className="val">{events.length}</div><div className="lbl">Events</div></div>
+      <div className="stat"><div className="val">{rate}%</div><div className="lbl">Particip.</div></div>
+    </div>
+    {mvp&&mvp.total>0&&<div className="card" style={{borderColor:'rgba(255,204,68,.3)',background:'rgba(255,204,68,.03)'}}>
+      <div className="card-title" style={{color:'var(--gold)'}}>MVP de la légion</div>
+      <div style={{display:'flex',alignItems:'center',gap:12}}>
+        <span style={{fontSize:28}}>{mvp.emoji}</span>
+        <div><div style={{fontWeight:700,fontSize:15}}>{mvp.name}</div><div style={{color:'var(--textm)',fontSize:12}}>{fmt(mvp.total)} pts · {mvp.rank}</div></div>
+        <span style={{marginLeft:'auto',fontSize:24}}>🏆</span>
       </div>
-
-      {topPlayer&&(
-        <div className="card" style={{borderColor:'rgba(255,204,68,0.3)',background:'rgba(255,204,68,0.04)'}}>
-          <div className="card-title" style={{color:'var(--gold)'}}>MVP de la légion</div>
-          <div style={{display:'flex',alignItems:'center',gap:12}}>
-            <div style={{fontSize:28}}>{topPlayer.emoji}</div>
-            <div>
-              <div style={{fontWeight:700,fontSize:15}}>{topPlayer.name}</div>
-              <div style={{color:'var(--textm)',fontSize:12}}>{fmt(topPlayer.total)} pts cumulés</div>
-            </div>
-            <div style={{marginLeft:'auto',fontSize:24,color:'var(--gold)'}}>🏆</div>
-          </div>
-        </div>
-      )}
-
-      <div className="card">
-        <div className="card-title">Derniers événements</div>
-        {!lastEvents.length&&<div className="empty">Aucun événement enregistré</div>}
-        {lastEvents.map(ev=>{
-          const scores=Object.values(ev.scores);
-          const total=scores.reduce((s,v)=>s+v,0);
-          const participants=scores.filter(v=>v>0).length;
-          return(
-            <div key={ev.id} className="event-row">
-              <div>
-                <div className="ev-name" style={{color:EVENT_COLORS[ev.type]}}>{ev.name}</div>
-                <div style={{fontSize:11,color:'var(--textd)'}}>{ev.date} · {participants} joueurs</div>
-              </div>
-              <div className="ev-score">{fmt(total)}</div>
-            </div>
-          );
-        })}
-      </div>
-
-      {activePlayers.length>0&&events.length>0&&(
-        <div className="card">
-          <div className="card-title">Classement général</div>
-          {activePlayers.map(p=>{
-            const total=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
-            return{...p,total};
-          }).sort((a,b)=>b.total-a.total).slice(0,5).map((p,i)=>(
-            <div key={p.id} className="rank-row">
-              <span className="rank-num">{i+1}</span>
-              <span style={{fontSize:16}}>{p.emoji}</span>
-              <span className="rank-name">{p.name}</span>
-              <span className="rank-score">{fmt(p.total)}</span>
-            </div>
-          ))}
-        </div>
-      )}
-    </>
-  );
+    </div>}
+    {byP.length>0&&<div className="card">
+      <div className="card-title">Classement général</div>
+      {byP.slice(0,8).map((p,i)=><div key={p.id} className="rr">
+        <span style={{fontSize:12,color:i===0?'var(--gold)':i===1?'#aaa':i===2?'#c86a2d':'var(--textd)',width:22,textAlign:'right',flexShrink:0}}>{i+1}</span>
+        <span style={{fontSize:16}}>{p.emoji}</span>
+        <span style={{flex:1,fontSize:13}}>{p.name}</span>
+        <span style={{fontFamily:'monospace',fontSize:13,color:'var(--acc)'}}>{fmt(p.total)}</span>
+      </div>)}
+    </div>}
+    {last.length>0&&<div className="card">
+      <div className="card-title">Derniers événements</div>
+      {last.map(ev=>{const total=Object.values(ev.scores).reduce((s,v)=>s+v,0),parts=Object.values(ev.scores).filter(v=>v>0).length;return(<div key={ev.id} className="ev-row"><div><div style={{color:ECOL[ev.type],fontWeight:500,fontSize:13}}>{ev.name}</div><div style={{fontSize:11,color:'var(--textd)'}}>{ev.date} · {parts} joueurs</div></div><div style={{fontFamily:'monospace',fontSize:14,color:'var(--acc)'}}>{fmt(total)}</div></div>);})}
+    </div>}
+    {!active.length&&<div className="empty">Ajoute des joueurs dans l'onglet Joueurs</div>}
+  </>);
 }
 
-// ─── PLAYERS ─────────────────────────────────────────────────────────────────
-function Players({players,activePlayers,events,addPlayer,updatePlayer,deletePlayer,setModal}){
-  const[view,setView]=useState(null);// player id being viewed/edited
+// ── PLAYERS ───────────────────────────────────────────────────────────────
+function Players({players,active,events,addPlayer,updatePlayer,deletePlayer}){
+  const[view,setView]=useState(null);
   const[adding,setAdding]=useState(false);
   const[form,setForm]=useState({name:'',emoji:'✈️',bp:'',rank:'Membre'});
-
   const vp=view?players.find(p=>p.id===view):null;
-
-  if(vp)return<PlayerDetail player={vp} events={events} update={(u)=>updatePlayer(vp.id,u)} del={()=>{deletePlayer(vp.id);setView(null);}} back={()=>setView(null)}/>;
-
-  return(
-    <>
-      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
-        <div style={{fontSize:13,color:'var(--textm)'}}>
-          {activePlayers.length} joueur{activePlayers.length!==1?'s':''} actif{activePlayers.length!==1?'s':''}
-        </div>
-        <button className="btn btn-primary" onClick={()=>setAdding(true)}>+ Joueur</button>
+  if(vp)return<PlayerDetail player={vp} events={events} update={u=>updatePlayer(vp.id,u)} del={()=>{deletePlayer(vp.id);setView(null);}} back={()=>setView(null)}/>;
+  return(<>
+    <div className="row" style={{marginBottom:12}}>
+      <span style={{fontSize:13,color:'var(--textm)',flex:1}}>{active.length} joueur{active.length!==1?'s':''}</span>
+      <button className="btn btn-p btn-sm" onClick={()=>setAdding(true)}>+ Ajouter</button>
+    </div>
+    {adding&&<div className="card" style={{borderColor:'rgba(0,200,255,.3)',marginBottom:12}}>
+      <div className="card-title">Nouveau joueur</div>
+      <div style={{display:'flex',gap:4,flexWrap:'wrap',marginBottom:10}}>
+        {EMOJIS.map(e=><button key={e} onClick={()=>setForm(f=>({...f,emoji:e}))} style={{fontSize:17,background:form.emoji===e?'var(--accG)':'transparent',border:`1px solid ${form.emoji===e?'var(--acc)':'var(--bdr)'}`,borderRadius:6,padding:'4px 5px',cursor:'pointer'}}>{e}</button>)}
       </div>
-
-      {adding&&(
-        <div className="card" style={{borderColor:'rgba(0,200,255,0.3)'}}>
-          <div className="card-title">Nouveau joueur</div>
-          <div style={{display:'flex',gap:6,marginBottom:8,flexWrap:'wrap'}}>
-            {EMOJIS.map(e=>(
-              <button key={e} onClick={()=>setForm(f=>({...f,emoji:e}))}
-                style={{fontSize:18,background:form.emoji===e?'var(--accG)':'transparent',border:`1px solid ${form.emoji===e?'var(--acc)':'var(--bdr)'}`,borderRadius:6,padding:'4px 6px',cursor:'pointer'}}>
-                {e}
-              </button>
-            ))}
+      <div className="g2">
+        <div className="field"><label>Pseudo</label><input value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} autoFocus placeholder="NomDuJoueur"/></div>
+        <div className="field"><label>BP</label><input type="number" value={form.bp} onChange={e=>setForm(f=>({...f,bp:e.target.value}))} placeholder="15000000"/></div>
+      </div>
+      <div className="field"><label>Rang</label><select value={form.rank} onChange={e=>setForm(f=>({...f,rank:e.target.value}))}>{RANKS.map(r=><option key={r}>{r}</option>)}</select></div>
+      <div className="row" style={{marginTop:8}}>
+        <button className="btn btn-p flex1" onClick={()=>{if(!form.name.trim())return;addPlayer(form);setForm({name:'',emoji:'✈️',bp:'',rank:'Membre'});setAdding(false);}}>Ajouter</button>
+        <button className="btn" onClick={()=>setAdding(false)}>Annuler</button>
+      </div>
+    </div>}
+    {!players.length&&!adding&&<div className="empty">Aucun joueur — commence par en ajouter un</div>}
+    {players.map(p=>{
+      const total=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
+      const evCnt=events.filter(e=>(e.scores[p.id]||0)>0).length;
+      const eq=p.equipment||{};
+      const drones=[eq.dr1,eq.dr2,eq.dr3].filter(Boolean);
+      return(<div key={p.id} className="pc" onClick={()=>setView(p.id)}>
+        <div style={{display:'flex',alignItems:'center',gap:10}}>
+          <div className="pa">{p.emoji}</div>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:700,fontSize:14}}>{p.name}</div>
+            <div style={{fontSize:11,color:'var(--textm)'}}>{p.bp?fmt(p.bp)+' BP':''}</div>
           </div>
-          <div className="g2">
-            <div className="field"><label>Pseudo</label><input value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} placeholder="NomDuJoueur"/></div>
-            <div className="field"><label>BP (puissance)</label><input type="number" value={form.bp} onChange={e=>setForm(f=>({...f,bp:e.target.value}))} placeholder="ex: 15000000"/></div>
-          </div>
-          <div className="field">
-            <label>Rang</label>
-            <select value={form.rank} onChange={e=>setForm(f=>({...f,rank:e.target.value}))}>
-              {['Chef','Co-Chef','Officier','Élite','Membre'].map(r=><option key={r}>{r}</option>)}
-            </select>
-          </div>
-          <div className="row mt8">
-            <button className="btn btn-primary flex1" onClick={()=>{if(!form.name.trim())return;addPlayer(form);setForm({name:'',emoji:'✈️',bp:'',rank:'Membre'});setAdding(false);}}>Ajouter</button>
-            <button className="btn" onClick={()=>setAdding(false)}>Annuler</button>
+          <div style={{textAlign:'right'}}>
+            <div style={{fontFamily:'monospace',fontSize:14,color:'var(--acc)'}}>{fmt(total)}</div>
+            <div style={{fontSize:10,color:'var(--textd)'}}>{evCnt} event{evCnt!==1?'s':''}</div>
           </div>
         </div>
-      )}
-
-      {!activePlayers.length&&!adding&&<div className="empty">Aucun joueur — commence par en ajouter un</div>}
-
-      {players.map(p=>{
-        const totalScore=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
-        const evCount=events.filter(e=>e.scores[p.id]>0).length;
-        return(
-          <div key={p.id} className="player-card" onClick={()=>setView(p.id)}>
-            <div className="player-header">
-              <div className="player-avatar">{p.emoji}</div>
-              <div style={{flex:1}}>
-                <div className="player-name">{p.name}</div>
-                <div className="player-bp">{p.bp?fmt(p.bp)+' BP':''}</div>
-              </div>
-              <div style={{textAlign:'right'}}>
-                <div style={{fontSize:13,fontFamily:'monospace',color:'var(--acc)'}}>{fmt(totalScore)}</div>
-                <div style={{fontSize:10,color:'var(--textd)'}}>{evCount} event{evCount!==1?'s':''}</div>
-              </div>
-            </div>
-            <div className="badges">
-              <span className={`badge badge-${p.rank==='Chef'?'gold':p.rank==='Officier'||p.rank==='Co-Chef'?'warn':'acc'}`}>{p.rank}</span>
-              {p.builds.MG&&<span className="badge badge-acc">{p.builds.MG}</span>}
-              {p.builds.DR&&<span className="badge badge-warn">{p.builds.DR}</span>}
-            </div>
-          </div>
-        );
-      })}
-    </>
-  );
+        <div style={{marginTop:6,display:'flex',flexWrap:'wrap',gap:2}}>
+          <span className={`badge ${p.rank==='Chef'?'bg':p.rank==='Officier'||p.rank==='Co-Chef'?'bw':'ba'}`}>{p.rank}</span>
+          {eq.mg&&<span className="badge ba">{eq.mg}</span>}
+          {drones.map((d,i)=><span key={i} className={`badge b${DRONE_TYPE(d)==='burn'?'w':DRONE_TYPE(d)==='elec'?'p':DRONE_TYPE(d)==='refl'?'a':DRONE_TYPE(d)==='shld'?'s':'g'}`}>{d}</span>)}
+          {p.pvp?.titan&&<span className="badge bg">Titan 5/5</span>}
+        </div>
+      </div>);
+    })}
+  </>);
 }
 
-// ─── PLAYER DETAIL ───────────────────────────────────────────────────────────
+// ── PLAYER DETAIL ─────────────────────────────────────────────────────────
 function PlayerDetail({player,events,update,del,back}){
-  const[tab,setTab]=useState('build');
-  const[p,setP]=useState(player);
+  const[tab,setTab]=useState('scan');
+  const def_eq={mg:'',wg:'',ms:'',ar:'',ft:'',dr1:'',dr2:'',dr3:'',drCustom:'',sentinel1:'',sentinel2:'',mech:''};
+  const def_pvp={mga:0,wga:0,msa:0,titan:false,mgType:'conqueror',db:0,ed:0,di:0,dr:0,fi:0,fd:0,mgIR:0,wgIR:0,msIR:0,smm:4.8,sEnh:0,sEnhDec:0,hEnh:0,hEnhDec:0,skm:3,spm:1,trPct:0,drEnh:0,drEnhDec:0,dSkIR:0,dNaIR:0,bb:0,bStacks:1,fStacks:0,gcr:50,eCrRes:0,mgLCr:0,mgLCrR:0,hit:0,eDodge:0,mgSpd:0,wgSpd:0,msSpd:0,dNaSpd:0,dSkSpd:0};
+  const[p,setP]=useState({...player,equipment:{...def_eq,...(player.equipment||{})},pvp:{...def_pvp,...(player.pvp||{})}});
   const dirty=JSON.stringify(p)!==JSON.stringify(player);
-
-  function save(){update(p);}
-
-  const playerEvents=events.filter(e=>e.scores[p.id]>0).slice(-5).reverse();
   const totalScore=events.reduce((s,e)=>s+(e.scores[p.id]||0),0);
+  const pevs=[...events].filter(e=>(e.scores[p.id]||0)>0).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,8);
+  const quick=useMemo(()=>(p.pvp?.mga||p.pvp?.wga||p.pvp?.msa)?pvpCalc(p.pvp):null,[p.pvp]);
+  const updEq=obj=>setP(x=>({...x,equipment:{...x.equipment,...obj}}));
+  const updPvp=obj=>setP(x=>({...x,pvp:{...x.pvp,...obj}}));
 
-  return(
-    <>
-      <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:14}}>
-        <button className="btn btn-sm" onClick={back}>← Retour</button>
-        <span style={{fontSize:22}}>{p.emoji}</span>
-        <span style={{fontWeight:700,fontSize:16,flex:1}}>{p.name}</span>
-        {dirty&&<button className="btn btn-primary btn-sm" onClick={save}>Sauvegarder</button>}
-        <button className="btn btn-danger btn-sm" onClick={()=>{if(confirm('Supprimer '+p.name+' ?'))del();}}>Suppr.</button>
-      </div>
+  return(<>
+    <div className="row" style={{marginBottom:12}}>
+      <button className="btn btn-sm" onClick={back}>← Retour</button>
+      <span style={{fontSize:22}}>{p.emoji}</span>
+      <span style={{fontWeight:700,fontSize:15,flex:1}}>{p.name}</span>
+      {dirty&&<button className="btn btn-p btn-sm" onClick={()=>update(p)}>💾 Sauvegarder</button>}
+      <button className="btn btn-d btn-sm" onClick={()=>{if(confirm('Supprimer '+p.name+' ?'))del();}}>✕</button>
+    </div>
+    <div className="g2" style={{marginBottom:8}}>
+      <div className="field"><label>Pseudo</label><input value={p.name} onChange={e=>setP(x=>({...x,name:e.target.value}))}/></div>
+      <div className="field"><label>BP</label><input type="number" value={p.bp||''} onChange={e=>setP(x=>({...x,bp:parseInt(e.target.value)||0}))}/></div>
+    </div>
+    <div className="g2" style={{marginBottom:12}}>
+      <div className="field"><label>Rang</label><select value={p.rank} onChange={e=>setP(x=>({...x,rank:e.target.value}))}>{RANKS.map(r=><option key={r}>{r}</option>)}</select></div>
+      <div className="field"><label>Emoji</label><select value={p.emoji} onChange={e=>setP(x=>({...x,emoji:e.target.value}))}>{EMOJIS.map(e=><option key={e} value={e}>{e}</option>)}</select></div>
+    </div>
+    <div className="tabs">
+      {[['scan','📷 Scan'],['build','Build'],['stats','Stats PvP'],['hist','Historique'],['notes','Notes']].map(([id,l])=><button key={id} className={`tab${tab===id?' on':''}`} onClick={()=>setTab(id)}>{l}</button>)}
+    </div>
 
-      <div className="g2" style={{marginBottom:12}}>
-        <div className="field"><label>Pseudo</label><input value={p.name} onChange={e=>setP(x=>({...x,name:e.target.value}))}/></div>
-        <div className="field"><label>BP</label><input type="number" value={p.bp} onChange={e=>setP(x=>({...x,bp:parseInt(e.target.value)||0}))}/></div>
-      </div>
+    {/* SCAN SCREENSHOT */}
+    {tab==='scan'&&<ScreenshotScanner player={p} onApply={data=>{
+      const eq={};
+      if(data.mg)eq.mg=data.mg;if(data.wg)eq.wg=data.wg;if(data.ms)eq.ms=data.ms;
+      if(data.ar)eq.ar=data.ar;if(data.ft)eq.ft=data.ft;
+      if(data.dr1)eq.dr1=data.dr1;if(data.dr2)eq.dr2=data.dr2;if(data.dr3)eq.dr3=data.dr3;
+      const pv={};
+      if(data.mga!=null)pv.mga=data.mga;if(data.wga!=null)pv.wga=data.wga;if(data.msa!=null)pv.msa=data.msa;
+      if(data.critRate!=null)pv.gcr=data.critRate;if(data.hitRate!=null)pv.hit=data.hitRate;
+      if(data.dodgeRate!=null)pv.eDodge=data.dodgeRate;
+      const updates={};
+      if(Object.keys(eq).length)updates.equipment={...p.equipment,...eq};
+      if(Object.keys(pv).length)updates.pvp={...p.pvp,...pv};
+      if(data.playerName&&!p.name)updates.name=data.playerName;
+      if(data.bp&&!p.bp)updates.bp=data.bp;
+      if(data.notes)updates.notes=(p.notes?p.notes+'\n':'')+data.notes;
+      setP(x=>({...x,...updates}));
+      setTab('build');
+    }}/>}
 
-      <div className="g2" style={{marginBottom:12}}>
-        <div className="field">
-          <label>Rang</label>
-          <select value={p.rank} onChange={e=>setP(x=>({...x,rank:e.target.value}))}>
-            {['Chef','Co-Chef','Officier','Élite','Membre'].map(r=><option key={r}>{r}</option>)}
-          </select>
-        </div>
-        <div className="field">
-          <label>Emoji</label>
-          <select value={p.emoji} onChange={e=>setP(x=>({...x,emoji:e.target.value}))}>
-            {EMOJIS.map(e=><option key={e} value={e}>{e}</option>)}
-          </select>
-        </div>
-      </div>
-
-      <div className="tabs">
-        {['build','stats','historique','notes'].map(t=>(
-          <button key={t} className={`tab${tab===t?' on':''}`} onClick={()=>setTab(t)}>{t.charAt(0).toUpperCase()+t.slice(1)}</button>
-        ))}
-      </div>
-
-      {tab==='build'&&(
-        <div className="card">
-          <div className="card-title">Équipement — 6 slots</div>
-          <div className="slots">
-            {WEAPONS.map(w=>(
-              <div key={w.key} className="slot">
-                <div className="slot-type">{w.label}</div>
-                <select style={{fontSize:10,padding:'4px 2px',width:'100%'}}
-                  value={p.builds[w.key]||''}
-                  onChange={e=>setP(x=>({...x,builds:{...x.builds,[w.key]:e.target.value}}))}>
-                  <option value="">—</option>
-                  {(SLOTS_OPTIONS[w.key]||[]).map(o=><option key={o} value={o}>{o}</option>)}
-                </select>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {tab==='stats'&&(
-        <div className="card">
-          <div className="card-title">Stats d'attaque (pour calc PvP)</div>
-          <div className="g2">
-            <div className="field"><label>MG Attack</label><input type="number" value={p.stats?.mga||0} onChange={e=>setP(x=>({...x,stats:{...x.stats,mga:parseInt(e.target.value)||0}}))}/></div>
-            <div className="field"><label>WG Attack</label><input type="number" value={p.stats?.wga||0} onChange={e=>setP(x=>({...x,stats:{...x.stats,wga:parseInt(e.target.value)||0}}))}/></div>
-            <div className="field"><label>MS Attack</label><input type="number" value={p.stats?.msa||0} onChange={e=>setP(x=>({...x,stats:{...x.stats,msa:parseInt(e.target.value)||0}}))}/></div>
-          </div>
-          <div style={{display:'flex',alignItems:'center',gap:10,marginTop:6}}>
-            <label style={{fontSize:12,color:'var(--textm)'}}>Titan 5/5</label>
-            <input type="checkbox" checked={!!p.stats?.titan} onChange={e=>setP(x=>({...x,stats:{...x.stats,titan:e.target.checked}}))} style={{width:auto}}/>
-          </div>
-          {(p.stats?.mga||p.stats?.wga||p.stats?.msa)>0&&(()=>{
-            const r=calcDmg(p.stats||{});
-            return(
-              <div style={{marginTop:10}}>
-                <div className="sep"/>
-                <div style={{fontSize:11,color:'var(--textm)',marginBottom:6,textTransform:'uppercase',letterSpacing:'0.06em'}}>Aperçu dégâts (sans modif)</div>
-                <div className="g3">
-                  <div className="calc-result"><div className="cr-lbl">MG</div><div className="cr-val" style={{fontSize:14}}>{fmt(r.mg)}</div></div>
-                  <div className="calc-result"><div className="cr-lbl">WG</div><div className="cr-val" style={{fontSize:14}}>{fmt(r.wg)}</div></div>
-                  <div className="calc-result"><div className="cr-lbl">MS</div><div className="cr-val" style={{fontSize:14}}>{fmt(r.ms)}</div></div>
-                </div>
-              </div>
-            );
-          })()}
-        </div>
-      )}
-
-      {tab==='historique'&&(
-        <div className="card">
-          <div className="card-title">Historique events</div>
-          <div style={{marginBottom:10,fontSize:13,color:'var(--textm)'}}>Score cumulé : <span style={{color:'var(--acc)',fontFamily:'monospace',fontWeight:700}}>{fmt(totalScore)}</span></div>
-          {!playerEvents.length&&<div className="empty">Pas encore de score enregistré</div>}
-          {playerEvents.map(ev=>(
-            <div key={ev.id} className="event-row">
-              <div>
-                <div style={{color:EVENT_COLORS[ev.type],fontWeight:500,fontSize:13}}>{ev.name}</div>
-                <div style={{fontSize:11,color:'var(--textd)'}}>{ev.date}</div>
-              </div>
-              <div style={{fontFamily:'monospace',color:'var(--acc)',fontSize:14}}>{fmt(ev.scores[p.id])}</div>
+    {/* BUILD */}
+    {tab==='build'&&<div>
+      <div className="card">
+        <div className="card-title">Armes principales (5 slots)</div>
+        <div className="slots-grid">
+          {[['mg','Main Gun',MG_LIST],['wg','Wing Gun',WG_LIST],['ms','Missile',MS_LIST],['ar','Armor',AR_LIST],['ft','Fighter',FT_LIST]].map(([k,l,opts])=>(
+            <div key={k} className="slot"><div className="slot-type">{l}</div>
+              <select style={{fontSize:10,padding:'3px 4px',width:'100%',background:'var(--bg)'}} value={p.equipment[k]||''} onChange={e=>updEq({[k]:e.target.value})}>
+                <option value="">—</option>
+                {opts.map(o=><option key={o} value={o}>{o}</option>)}
+              </select>
             </div>
           ))}
         </div>
-      )}
-
-      {tab==='notes'&&(
-        <div className="card">
-          <div className="card-title">Notes libres</div>
-          <textarea rows={5} value={p.notes||''} onChange={e=>setP(x=>({...x,notes:e.target.value}))} placeholder="Observations, stratégie, disponibilités..."/>
-        </div>
-      )}
-    </>
-  );
-}
-
-// ─── EVENTS ──────────────────────────────────────────────────────────────────
-function Events({activePlayers,events,addEvent,updateScore,deleteEvent}){
-  const[evTab,setEvTab]=useState('list');
-  const[selEv,setSelEv]=useState(null);
-  const[form,setForm]=useState({type:'Legion War',name:'',date:new Date().toISOString().slice(0,10)});
-
-  const sortedEvents=[...events].sort((a,b)=>b.date.localeCompare(a.date));
-  const ev=selEv?events.find(e=>e.id===selEv):null;
-
-  if(ev)return(
-    <>
-      <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:14}}>
-        <button className="btn btn-sm" onClick={()=>setSelEv(null)}>← Retour</button>
-        <span style={{fontWeight:700,fontSize:15,color:EVENT_COLORS[ev.type],flex:1}}>{ev.name}</span>
-        <button className="btn btn-danger btn-sm" onClick={()=>{if(confirm('Supprimer ?')){deleteEvent(ev.id);setSelEv(null);}}}>Suppr.</button>
       </div>
-      <div style={{fontSize:11,color:'var(--textd)',marginBottom:12}}>{ev.date} · {ev.type}</div>
       <div className="card">
-        <div className="card-title">Scores des joueurs</div>
-        {!activePlayers.length&&<div className="empty">Ajoute des joueurs d'abord</div>}
-        {activePlayers.map(p=>(
-          <div key={p.id} style={{display:'flex',alignItems:'center',gap:10,marginBottom:8}}>
-            <span style={{fontSize:16,width:24,textAlign:'center'}}>{p.emoji}</span>
-            <span style={{flex:1,fontSize:13}}>{p.name}</span>
-            <input type="number" style={{width:130,textAlign:'right'}}
-              placeholder="Score"
-              value={ev.scores[p.id]||''}
-              onChange={e=>updateScore(ev.id,p.id,e.target.value)}/>
+        <div className="card-title">Drones (3 slots)</div>
+        {[['dr1','Drone 1'],['dr2','Drone 2'],['dr3','Drone 3']].map(([k,l])=>(
+          <div key={k} style={{marginBottom:10}}>
+            <div style={{fontSize:11,color:'var(--textm)',marginBottom:5,textTransform:'uppercase',letterSpacing:'.05em'}}>{l}</div>
+            <div className="tag-grid">
+              {Object.entries(DRONES).map(([type,{list,color}])=>
+                list.map(d=>{
+                  const active=p.equipment[k]===d;
+                  const cls=`tag-pill ${type}${active?' on':''}`;
+                  return<button key={d} className={cls} onClick={()=>updEq({[k]:active?'':d})}>{d}</button>;
+                })
+              )}
+            </div>
+            <div className="field" style={{marginTop:4}}>
+              <label>Ou saisie libre</label>
+              <input value={p.equipment[k]||''} onChange={e=>updEq({[k]:e.target.value})} placeholder="Nom exact du drone..."/>
+            </div>
           </div>
         ))}
       </div>
-      {activePlayers.length>0&&Object.keys(ev.scores).length>0&&(
-        <div className="card">
-          <div className="card-title">Classement</div>
-          {activePlayers.map(p=>({...p,score:ev.scores[p.id]||0}))
-            .sort((a,b)=>b.score-a.score)
-            .map((p,i)=>(
-              <div key={p.id} className="rank-row">
-                <span className="rank-num" style={{color:i===0?'var(--gold)':i===1?'var(--acc)':i===2?'var(--warn)':'var(--textd)'}}>{i+1}</span>
-                <span style={{fontSize:16}}>{p.emoji}</span>
-                <span className="rank-name">{p.name}</span>
-                <span className="rank-score">{fmt(p.score)}</span>
-              </div>
-            ))}
-        </div>
-      )}
-    </>
-  );
-
-  return(
-    <>
-      <div className="tabs">
-        <button className={`tab${evTab==='list'?' on':''}`} onClick={()=>setEvTab('list')}>Historique</button>
-        <button className={`tab${evTab==='new'?' on':''}`} onClick={()=>setEvTab('new')}>+ Nouveau</button>
-      </div>
-
-      {evTab==='new'&&(
-        <div className="card" style={{borderColor:'rgba(0,200,255,0.3)'}}>
-          <div className="card-title">Créer un événement</div>
-          <div className="field">
-            <label>Type</label>
-            <select value={form.type} onChange={e=>setForm(f=>({...f,type:e.target.value,name:e.target.value}))}>
-              {EVENTS.map(ev=><option key={ev}>{ev}</option>)}
-            </select>
-          </div>
-          <div className="g2">
-            <div className="field"><label>Nom (optionnel)</label><input value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} placeholder={form.type}/></div>
-            <div className="field"><label>Date</label><input type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))}/></div>
-          </div>
-          <button className="btn btn-primary" style={{width:'100%'}} onClick={()=>{const id=addEvent({...form,name:form.name||form.type});setSelEv(id);setEvTab('list');}}>
-            Créer et saisir les scores
-          </button>
-        </div>
-      )}
-
-      {evTab==='list'&&(
-        <>
-          {!sortedEvents.length&&<div className="empty">Aucun événement — crée-en un</div>}
-          {sortedEvents.map(ev=>{
-            const scores=Object.values(ev.scores);
-            const total=scores.reduce((s,v)=>s+v,0);
-            const parts=scores.filter(v=>v>0).length;
-            return(
-              <div key={ev.id} className="player-card" onClick={()=>setSelEv(ev.id)}>
-                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-                  <div>
-                    <div style={{color:EVENT_COLORS[ev.type],fontWeight:600,fontSize:14}}>{ev.name}</div>
-                    <div style={{fontSize:11,color:'var(--textd)',marginTop:2}}>{ev.date} · {parts}/{activePlayers.length} joueurs</div>
-                  </div>
-                  <div style={{textAlign:'right'}}>
-                    <div style={{fontFamily:'monospace',fontSize:15,color:'var(--acc)'}}>{fmt(total)}</div>
-                    <div style={{fontSize:10,color:'var(--textd)'}}>total légion</div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </>
-      )}
-    </>
-  );
-}
-
-// ─── PvP CALC ────────────────────────────────────────────────────────────────
-function PvPCalc({players}){
-  const[sel,setSel]=useState('custom');
-  const[s,setS]=useState({mga:50000,wga:40000,msa:30000,titan:false,db:0,ed:0,di:0,dr:0,fi:0,fd:0,mgType:'conqueror',mgIR:0,wgIR:0,msIR:0});
-  const[calcTab,setCalcTab]=useState('weapons');
-
-  useEffect(()=>{
-    if(sel!=='custom'){
-      const p=players.find(p=>p.id===sel);
-      if(p&&p.stats)setS(prev=>({...prev,...p.stats,mgType:p.builds?.MG?.toLowerCase().includes('conqueror')?'conqueror':'other'}));
-    }
-  },[sel]);
-
-  function upd(k,v){setS(prev=>({...prev,[k]:v}));}
-
-  const r=useMemo(()=>calcDmg(s),[s]);
-  const DBD=s.db-s.ed,IR=s.di-s.dr,FID=100+s.fi-s.fd;
-  const DBDMULT=F(DBD/1000),IRMULT=F(IR/100);
-  const FIDMULT=FID>=50?FID/100:50/(100+2*(50-FID));
-
-  const N=(id,label,step=1000,min=0)=>(
-    <div className="field">
-      <label>{label}</label>
-      <input type="number" value={s[id]} min={min} step={step} onChange={e=>upd(id,parseFloat(e.target.value)||0)}/>
-    </div>
-  );
-
-  return(
-    <>
       <div className="card">
-        <div className="card-title">Source des stats</div>
-        <select value={sel} onChange={e=>setSel(e.target.value)}>
-          <option value="custom">Saisie manuelle</option>
-          {players.filter(p=>p.stats?.mga).map(p=><option key={p.id} value={p.id}>{p.emoji} {p.name}</option>)}
-        </select>
+        <div className="card-title">Mech Spirits / Sentinelles</div>
+        <div className="g3">
+          {[['sentinel1','Sentinelle 1'],['sentinel2','Sentinelle 2'],['mech','Mech']].map(([k,l])=>(
+            <div key={k} className="slot"><div className="slot-type">{l}</div>
+              <input style={{fontSize:10,padding:'3px 4px'}} value={p.equipment[k]||''} onChange={e=>updEq({[k]:e.target.value})} placeholder="Nom..."/>
+            </div>
+          ))}
+        </div>
       </div>
+    </div>}
 
+    {/* STATS PvP */}
+    {tab==='stats'&&<div>
       <div className="card">
         <div className="card-title">Attaque de base</div>
         <div className="g2">
-          {N('mga','MG Attack')}{N('wga','WG Attack')}{N('msa','MS Attack')}
+          {[['mga','MG Attack'],['wga','WG Attack'],['msa','MS Attack']].map(([k,l])=>(
+            <div key={k} className="field"><label>{l}</label><input type="number" value={p.pvp[k]||''} onChange={e=>updPvp({[k]:parseInt(e.target.value)||0})} placeholder="0"/></div>
+          ))}
         </div>
-        <div style={{display:'flex',alignItems:'center',gap:8,marginTop:4}}>
+        <div className="row" style={{gap:12,flexWrap:'wrap'}}>
           <label style={{fontSize:12,color:'var(--textm)'}}>Titan 5/5 (×1.3)</label>
-          <input type="checkbox" checked={s.titan} onChange={e=>upd('titan',e.target.checked)} style={{width:'auto'}}/>
+          <input type="checkbox" checked={!!p.pvp.titan} onChange={e=>updPvp({titan:e.target.checked})}/>
+          <label style={{fontSize:12,color:'var(--textm)'}}>MG :</label>
+          <select style={{width:'auto',padding:'4px 8px',fontSize:12}} value={p.pvp.mgType||'conqueror'} onChange={e=>updPvp({mgType:e.target.value})}>
+            <option value="conqueror">Conqueror</option><option value="other">Dest./Thor</option>
+          </select>
         </div>
-        <div style={{marginTop:8,padding:'8px 12px',background:'var(--surf2)',borderRadius:'var(--rad)',border:'1px solid rgba(0,200,255,0.2)'}}>
-          <div style={{fontSize:10,color:'var(--textm)'}}>TAA</div>
-          <div style={{fontFamily:'monospace',fontSize:18,fontWeight:700,color:'var(--acc)'}}>{fmt(r.TAA)}</div>
-        </div>
+        {quick&&<>
+          <div className="sep"/>
+          <div className="g3">
+            <div className="cb"><div className="cl">MG</div><div className="cv" style={{fontSize:15}}>{fmt(quick.mg)}</div></div>
+            <div className="cb"><div className="cl">WG</div><div className="cv" style={{fontSize:15}}>{fmt(quick.wg)}</div></div>
+            <div className="cb"><div className="cl">MS</div><div className="cv" style={{fontSize:15}}>{fmt(quick.ms)}</div></div>
+          </div>
+          <div style={{fontSize:11,color:'var(--textd)',marginTop:4}}>TAA = {fmt(quick.TAA)}</div>
+        </>}
       </div>
-
       <div className="card">
-        <div className="card-title">Modificateurs globaux</div>
+        <div className="card-title">Stats défensives / offensives notables</div>
         <div className="g2">
-          {N('db','Defense Break',100)}{N('ed','Déf. ennemie',100)}
+          {[['gcr','Crit Rate'],['eCrRes','Crit Resist.'],['hit','Hit Rate'],['eDodge','Dodge Rate']].map(([k,l])=>(
+            <div key={k} className="field"><label>{l}</label><input type="number" value={p.pvp[k]||''} onChange={e=>updPvp({[k]:parseInt(e.target.value)||0})} placeholder="0"/></div>
+          ))}
         </div>
-        <div className="mult-row"><span className="mult-lbl">DBD = {DBD>=0?'+':''}{DBD}</span><span className="mult-val">DBDMULT {DBDMULT.toFixed(3)}×</span></div>
-        <div className="g2 mt8">
-          {N('di','Damage Inc. (X)',5)}{N('dr','Damage Red. ennemi (Y)',5)}
-        </div>
-        <div className="mult-row"><span className="mult-lbl">IR = {IR>=0?'+':''}{IR}</span><span className="mult-val">IRMULT {IRMULT.toFixed(3)}×</span></div>
-        <div className="g2 mt8">
-          {N('fi','Final Dmg Inc.',5)}{N('fd','Final Dmg Dec. ennemi',5)}
-        </div>
-        <div className="mult-row"><span className="mult-lbl">FID = {FID}</span><span className="mult-val">FIDMULT {FIDMULT.toFixed(3)}×</span></div>
       </div>
+    </div>}
 
-      <div className="card">
-        <div className="card-title">Résultats (hit normal)</div>
-        <div className="calc-result"><div className="cr-lbl">Main Gun ({s.mgType==='conqueror'?'Conqueror — coeff 0.07575':'Dest./Thor — coeff 0.07876'})</div><div className="cr-val">{fmt(r.mg)}</div></div>
-        <div className="calc-result"><div className="cr-lbl">Wing Gun — coeff 0.09</div><div className="cr-val">{fmt(r.wg)}</div></div>
-        <div className="calc-result"><div className="cr-lbl">Missile — coeff 0.225</div><div className="cr-val">{fmt(r.ms)}</div></div>
-        <div style={{marginTop:10,padding:'8px 12px',background:'rgba(0,200,255,0.04)',borderRadius:'var(--rad)',border:'1px solid rgba(0,200,255,0.15)'}}>
-          <div style={{fontSize:10,color:'var(--textm)'}}>Salve initiale MG+WG+MS</div>
-          <div style={{fontFamily:'monospace',fontSize:18,fontWeight:700,color:'var(--acc)'}}>{fmt(r.mg+r.wg+r.ms)}</div>
-        </div>
-        <div style={{marginTop:8,display:'flex',gap:4}}>
-          <button className="btn btn-sm flex1" onClick={()=>upd('mgType','conqueror')} style={s.mgType==='conqueror'?{background:'var(--accG)',borderColor:'rgba(0,200,255,0.4)',color:'var(--acc)'}:{}}>Conqueror MG</button>
-          <button className="btn btn-sm flex1" onClick={()=>upd('mgType','other')} style={s.mgType==='other'?{background:'var(--accG)',borderColor:'rgba(0,200,255,0.4)',color:'var(--acc)'}:{}}>Dest./Thor MG</button>
-        </div>
-      </div>
-    </>
-  );
+    {/* HISTORIQUE */}
+    {tab==='hist'&&<div className="card">
+      <div className="card-title">Historique events</div>
+      <div style={{marginBottom:10,fontSize:13,color:'var(--textm)'}}>Score cumulé : <span style={{color:'var(--acc)',fontFamily:'monospace',fontWeight:700}}>{fmt(totalScore)}</span></div>
+      {!pevs.length&&<div className="empty">Pas encore de score</div>}
+      {pevs.map(ev=><div key={ev.id} className="ev-row"><div><div style={{color:ECOL[ev.type],fontWeight:500,fontSize:13}}>{ev.name}</div><div style={{fontSize:11,color:'var(--textd)'}}>{ev.date}</div></div><div style={{fontFamily:'monospace',color:'var(--acc)',fontSize:14}}>{fmt(ev.scores[p.id])}</div></div>)}
+    </div>}
+
+    {/* NOTES */}
+    {tab==='notes'&&<div className="card">
+      <div className="card-title">Notes libres</div>
+      <textarea rows={6} value={p.notes||''} onChange={e=>setP(x=>({...x,notes:e.target.value}))} placeholder="Disponibilités, stratégie, observations..."/>
+    </div>}
+  </>);
 }
 
-// ─── MODAL ───────────────────────────────────────────────────────────────────
-function Modal({modal,setModal,ctx}){
-  return(
-    <div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)setModal(null);}}>
-      <div className="modal">
-        <div className="modal-title"><span>{modal.type}</span><button className="btn btn-sm" onClick={()=>setModal(null)}>✕</button></div>
-        <div className="empty">Contenu modal</div>
+// ── SCREENSHOT SCANNER ────────────────────────────────────────────────────
+function ScreenshotScanner({player,onApply}){
+  const[img,setImg]=useState(null);
+  const[b64,setB64]=useState(null);
+  const[loading,setLoading]=useState(false);
+  const[result,setResult]=useState(null);
+  const[error,setError]=useState('');
+  const[over,setOver]=useState(false);
+  const fileRef=useRef();
+  const apiKey=load('wf_apikey','');
+
+  const loadImg=file=>{
+    const r=new FileReader();
+    r.onload=e=>{
+      setImg(e.target.result);
+      // Convert to base64 for API
+      const b64r=new FileReader();
+      b64r.onload=ev=>setB64(ev.target.result.split(',')[1]);
+      b64r.readAsDataURL(file);
+    };
+    r.readAsDataURL(file);
+    setResult(null);setError('');
+  };
+
+  const scan=async()=>{
+    if(!b64)return;
+    if(!apiKey){setError('Clé API manquante — va dans les Paramètres (⚙) pour la renseigner.');return;}
+    setLoading(true);setError('');setResult(null);
+    try{
+      const data=await analyzeScreenshot(b64,apiKey);
+      setResult(data);
+    }catch(e){setError('Erreur : '+e.message);}
+    setLoading(false);
+  };
+
+  const FIELD_LABELS={playerName:'Pseudo',bp:'BP',mga:'MG Attack',wga:'WG Attack',msa:'MS Attack',titan:'Titan 5/5',mg:'Main Gun',wg:'Wing Gun',ms:'Missile',ar:'Armor',ft:'Fighter',dr1:'Drone 1',dr2:'Drone 2',dr3:'Drone 3',critRate:'Crit Rate',hitRate:'Hit Rate',dodgeRate:'Dodge Rate',hpTotal:'HP Total',notes:'Note'};
+
+  const filled=result?Object.entries(result).filter(([,v])=>v!==null&&v!==undefined).length:0;
+
+  return(<>
+    <div className="card" style={{borderColor:'rgba(0,200,255,.25)'}}>
+      <div className="card-title">Scanner un screenshot</div>
+      <div style={{fontSize:12,color:'var(--textm)',marginBottom:12,lineHeight:1.6}}>
+        Prends un screenshot de la fiche de stats de ton joueur dans Wing Fighter (page Attributs, équipement, profil...) et Claude va extraire automatiquement toutes les informations visibles.
+      </div>
+      {!apiKey&&<div style={{padding:'8px 12px',background:'rgba(255,107,53,.08)',border:'1px solid rgba(255,107,53,.3)',borderRadius:'var(--rad)',marginBottom:10,fontSize:12,color:'var(--warn)'}}>
+        ⚠ Clé API Anthropic requise — renseigne-la dans les Paramètres (onglet ⚙)
+      </div>}
+      <div
+        className={`scan-area${over?' over':''}`}
+        onClick={()=>fileRef.current.click()}
+        onDragOver={e=>{e.preventDefault();setOver(true);}}
+        onDragLeave={()=>setOver(false)}
+        onDrop={e=>{e.preventDefault();setOver(false);const f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/'))loadImg(f);}}>
+        {img
+          ?<img src={img} className="scan-preview" alt="screenshot"/>
+          :<div style={{color:'var(--textm)',fontSize:13}}>
+            <div style={{fontSize:28,marginBottom:8}}>📷</div>
+            <div>Appuie ou glisse un screenshot ici</div>
+            <div style={{fontSize:11,color:'var(--textd)',marginTop:4}}>JPG, PNG, WEBP — toute page du jeu</div>
+          </div>
+        }
+      </div>
+      <input ref={fileRef} type="file" accept="image/*" onChange={e=>e.target.files[0]&&loadImg(e.target.files[0])}/>
+      {img&&<>
+        <div className="row" style={{marginTop:10,gap:8}}>
+          <button className="btn btn-p flex1" onClick={scan} disabled={loading||!apiKey}>
+            {loading?<><div className="spinner"/>&nbsp;Analyse en cours...</>:'🔍 Analyser avec Claude'}
+          </button>
+          <button className="btn btn-sm" onClick={()=>{setImg(null);setB64(null);setResult(null);setError('');}}>✕</button>
+        </div>
+      </>}
+      {error&&<div style={{marginTop:8,padding:'8px 12px',background:'var(--redG)',borderRadius:'var(--rad)',fontSize:12,color:'var(--red)'}}>{error}</div>}
+    </div>
+
+    {result&&<div className="card" style={{borderColor:'rgba(68,255,136,.3)'}}>
+      <div className="card-title" style={{color:'var(--suc)'}}>Données extraites ({filled} champs)</div>
+      {Object.entries(result).filter(([,v])=>v!==null&&v!==undefined).map(([k,v])=>(
+        <div key={k} className="result-field">
+          <span className="rf-lbl">{FIELD_LABELS[k]||k}</span>
+          <span className="rf-val">{typeof v==='boolean'?(v?'Oui':'Non'):String(v)}</span>
+        </div>
+      ))}
+      <button className="btn btn-s" style={{width:'100%',marginTop:10}} onClick={()=>onApply(result)}>
+        ✓ Appliquer ces données à la fiche joueur
+      </button>
+    </div>}
+
+    <div className="card" style={{borderColor:'rgba(255,204,68,.15)'}}>
+      <div className="card-title">Tips screenshots utiles</div>
+      <div style={{fontSize:12,color:'var(--textm)',lineHeight:1.8}}>
+        <div>📊 <strong style={{color:'var(--text)'}}>Page Attributs</strong> → MG/WG/MS Attack, Crit Rate, Hit Rate, Dodge Rate</div>
+        <div>⚔ <strong style={{color:'var(--text)'}}>Page Équipement</strong> → Noms des armes, drones</div>
+        <div>👤 <strong style={{color:'var(--text)'}}>Profil joueur</strong> → Pseudo, BP</div>
+        <div>📋 <strong style={{color:'var(--text)'}}>Comparaison Attributs</strong> → Toutes les stats de combat</div>
       </div>
     </div>
-  );
+  </>);
 }
 
-// ─── RENDER ──────────────────────────────────────────────────────────────────
+// ── EVENTS ────────────────────────────────────────────────────────────────
+function Events({active,events,addEvent,updateScore,deleteEvent}){
+  const[evTab,setEvTab]=useState('list');
+  const[sel,setSel]=useState(null);
+  const[form,setForm]=useState({type:'Legion War',name:'',date:new Date().toISOString().slice(0,10)});
+  const sorted=[...events].sort((a,b)=>b.date.localeCompare(a.date));
+  const ev=sel?events.find(e=>e.id===sel):null;
+
+  if(ev)return(<>
+    <div className="row" style={{marginBottom:12}}>
+      <button className="btn btn-sm" onClick={()=>setSel(null)}>← Retour</button>
+      <span style={{fontWeight:700,fontSize:15,color:ECOL[ev.type],flex:1}}>{ev.name}</span>
+      <button className="btn btn-d btn-sm" onClick={()=>{if(confirm('Supprimer ?')){deleteEvent(ev.id);setSel(null);}}}>✕</button>
+    </div>
+    <div style={{fontSize:11,color:'var(--textd)',marginBottom:12}}>{ev.date} · {ev.type}</div>
+    <div className="card">
+      <div className="card-title">Saisie des scores</div>
+      {!active.length&&<div className="empty">Ajoute des joueurs d'abord</div>}
+      {active.map(p=><div key={p.id} style={{display:'flex',alignItems:'center',gap:8,marginBottom:8}}>
+        <span style={{fontSize:16,width:22,textAlign:'center'}}>{p.emoji}</span>
+        <span style={{flex:1,fontSize:13}}>{p.name}</span>
+        <input type="number" style={{width:130,textAlign:'right'}} placeholder="0" value={ev.scores[p.id]||''} onChange={e=>updateScore(ev.id,p.id,e.target.value)}/>
+      </div>)}
+    </div>
+    {active.length>0&&Object.keys(ev.scores).length>0&&<div className="card">
+      <div className="card-title">Classement</div>
+      {active.map(p=>({...p,sc:ev.scores[p.id]||0})).sort((a,b)=>b.sc-a.sc).map((p,i)=><div key={p.id} className="rr">
+        <span style={{width:22,textAlign:'right',fontSize:12,color:i===0?'var(--gold)':i===1?'#aaa':i===2?'#c86a2d':'var(--textd)',flexShrink:0}}>{i+1}</span>
+        <span style={{fontSize:16}}>{p.emoji}</span>
+        <span style={{flex:1,fontSize:13}}>{p.name}</span>
+        <span style={{fontFamily:'monospace',fontSize:13,color:'var(--acc)'}}>{fmt(p.sc)}</span>
+      </div>)}
+      <div style={{borderTop:'1px solid var(--bdr)',marginTop:6,paddingTop:8,display:'flex',justifyContent:'space-between',fontSize:12}}>
+        <span style={{color:'var(--textm)'}}>Total légion</span>
+        <span style={{fontFamily:'monospace',color:'var(--acc)',fontWeight:700}}>{fmt(active.reduce((s,p)=>s+(ev.scores[p.id]||0),0))}</span>
+      </div>
+    </div>}
+  </>);
+
+  return(<>
+    <div className="tabs">
+      <button className={`tab${evTab==='list'?' on':''}`} onClick={()=>setEvTab('list')}>Historique ({events.length})</button>
+      <button className={`tab${evTab==='new'?' on':''}`} onClick={()=>setEvTab('new')}>+ Nouveau</button>
+    </div>
+    {evTab==='new'&&<div className="card" style={{borderColor:'rgba(0,200,255,.3)'}}>
+      <div className="card-title">Créer un événement</div>
+      <div className="field"><label>Type</label><select value={form.type} onChange={e=>setForm(f=>({...f,type:e.target.value,name:e.target.value}))}>{EVENTS.map(e=><option key={e}>{e}</option>)}</select></div>
+      <div className="g2">
+        <div className="field"><label>Nom</label><input value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} placeholder={form.type}/></div>
+        <div className="field"><label>Date</label><input type="date" value={form.date} onChange={e=>setForm(f=>({...f,date:e.target.value}))}/></div>
+      </div>
+      <button className="btn btn-p" style={{width:'100%',marginTop:4}} onClick={()=>{const id=addEvent({...form,name:form.name||form.type});setSel(id);setEvTab('list');}}>Créer et saisir les scores →</button>
+    </div>}
+    {evTab==='list'&&(<>
+      {!sorted.length&&<div className="empty">Aucun événement</div>}
+      {sorted.map(ev=>{const total=Object.values(ev.scores).reduce((s,v)=>s+v,0),parts=Object.values(ev.scores).filter(v=>v>0).length;return(<div key={ev.id} className="pc" onClick={()=>setSel(ev.id)}><div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}><div><div style={{color:ECOL[ev.type],fontWeight:600,fontSize:14}}>{ev.name}</div><div style={{fontSize:11,color:'var(--textd)',marginTop:2}}>{ev.date} · {parts}/{active.length} joueurs</div></div><div style={{textAlign:'right'}}><div style={{fontFamily:'monospace',fontSize:14,color:'var(--acc)'}}>{fmt(total)}</div><div style={{fontSize:10,color:'var(--textd)'}}>total légion</div></div></div></div>);})}
+    </>)}
+  </>);
+}
+
+// ── PvP CALC ──────────────────────────────────────────────────────────────
+const DS={mga:50000,wga:40000,msa:30000,titan:false,mgType:'conqueror',db:0,ed:0,di:0,dr:0,fi:0,fd:0,mgIR:0,wgIR:0,msIR:0,smm:4.8,sEnh:0,sEnhDec:0,hEnh:0,hEnhDec:0,skm:3,spm:1,trPct:0,drEnh:0,drEnhDec:0,dSkIR:0,dNaIR:0,bb:0,bStacks:1,fStacks:0,gcr:50,eCrRes:0,mgLCr:0,mgLCrR:0,hit:0,eDodge:0,mgSpd:0,wgSpd:0,msSpd:0,dNaSpd:0,dSkSpd:0};
+function PvPCalc({players}){
+  const[s,setS]=useState(DS);
+  const[src,setSrc]=useState('custom');
+  const[ct,setCt]=useState('base');
+  useEffect(()=>{if(src!=='custom'){const p=players.find(x=>x.id===src);if(p?.pvp)setS(prev=>({...DS,...p.pvp}));}}, [src]);
+  const r=useMemo(()=>pvpCalc(s),[s]);
+  const u=(k,v)=>setS(prev=>({...prev,[k]:v}));
+  const N=(k,l,step=1000,min=0)=>(<div className="field"><label>{l} <span>{s[k]?.toLocaleString('fr-FR')}</span></label><input type="number" value={s[k]} min={min} step={step} onChange={e=>u(k,parseFloat(e.target.value)||0)}/></div>);
+
+  return(<>
+    {players.filter(p=>p.pvp?.mga).length>0&&<div className="card"><div className="card-title">Charger un joueur</div><select value={src} onChange={e=>setSrc(e.target.value)}><option value="custom">Saisie manuelle</option>{players.filter(p=>p.pvp?.mga).map(p=><option key={p.id} value={p.id}>{p.emoji} {p.name}</option>)}</select></div>}
+    <div className="tabs">{[['base','Base'],['mods','Modif.'],['drones','Drones'],['mech','Sent/Mech'],['crit','Crit'],['timings','Timings']].map(([id,l])=><button key={id} className={`tab${ct===id?' on':''}`} onClick={()=>setCt(id)}>{l}</button>)}</div>
+
+    {ct==='base'&&<>
+      <div className="card">
+        <div className="card-title">Attaque de base</div>
+        <div style={{display:'flex',gap:4,marginBottom:8}}>
+          <button className={`tog${!s.titan?' on':''}`} onClick={()=>u('titan',false)}>Standard</button>
+          <button className={`tog${s.titan?' on':''}`} onClick={()=>u('titan',true)}>Titan 5/5 (×1.3)</button>
+        </div>
+        <div className="g2">{N('mga','MG Attack')}{N('wga','WG Attack')}{N('msa','MS Attack')}</div>
+        <div style={{background:'var(--surf2)',border:'1px solid rgba(0,200,255,.2)',borderRadius:'var(--rad)',padding:'8px 12px',marginTop:6}}>
+          <div style={{fontSize:10,color:'var(--textm)'}}>TAA</div>
+          <div style={{fontFamily:'monospace',fontSize:20,fontWeight:700,color:'var(--acc)'}}>{fmt(r.TAA)}</div>
+        </div>
+      </div>
+      <div className="card">
+        <div className="card-title">Type MG</div>
+        <div style={{display:'flex',gap:4}}>
+          <button className={`tog${s.mgType==='conqueror'?' on':''}`} onClick={()=>u('mgType','conqueror')}>Conqueror (0.07575)</button>
+          <button className={`tog${s.mgType==='other'?' on':''}`} onClick={()=>u('mgType','other')}>Dest./Thor (0.07876)</button>
+        </div>
+      </div>
+      <div className="card" style={{borderColor:'rgba(0,200,255,.25)'}}>
+        <div className="card-title">Résultats armes (hit normal)</div>
+        <div className="cb"><div className="cl">Main Gun</div><div className="cv">{fmt(r.mg)}</div></div>
+        <div className="cb"><div className="cl">Wing Gun</div><div className="cv">{fmt(r.wg)}</div></div>
+        <div className="cb"><div className="cl">Missile</div><div className="cv">{fmt(r.ms)}</div></div>
+        <div className="cb" style={{background:'rgba(0,200,255,.04)'}}><div className="cl">Salve MG+WG+MS</div><div className="cv" style={{fontSize:22}}>{fmt(r.mg+r.wg+r.ms)}</div></div>
+      </div>
+    </>}
+
+    {ct==='mods'&&<>
+      <div className="card"><div className="sh">DBDMULT</div><div className="g2">{N('db','Defense Break',100)}{N('ed','Déf. ennemie',100)}</div><div className="mr"><span style={{color:'var(--textm)'}}>DBD = {(r.DBD>=0?'+':'')+r.DBD}</span><span style={{fontFamily:'monospace',color:'var(--acc)'}}>DBDMULT = {fmtM(r.DBDMULT)}</span></div></div>
+      <div className="card"><div className="sh">IRMULT</div><div className="g2">{N('di','Damage Inc. (X)',5)}{N('dr','Damage Red. ennemi (Y)',5)}</div><div className="mr"><span style={{color:'var(--textm)'}}>IR = {(r.IR>=0?'+':'')+r.IR}</span><span style={{fontFamily:'monospace',color:'var(--acc)'}}>IRMULT = {fmtM(r.IRMULT)}</span></div></div>
+      <div className="card"><div className="sh">FIDMULT</div><div className="g2">{N('fi','Final Dmg Inc.',5)}{N('fd','Final Dmg Dec. ennemi',5)}</div><div className="mr"><span style={{color:'var(--textm)'}}>FID = {r.FID}</span><span style={{fontFamily:'monospace',color:'var(--acc)'}}>FIDMULT = {fmtM(r.FIDMULT)}</span></div></div>
+      <div className="card"><div className="sh">WeaponIR</div><div className="g2">{N('mgIR','MG Weapon IR',5,-200)}{N('wgIR','WG Weapon IR',5,-200)}{N('msIR','MS Weapon IR',5,-200)}</div></div>
+    </>}
+
+    {ct==='drones'&&<>
+      <div className="card">
+        <div className="sh">Paramètres drone</div>
+        <div className="g2">
+          <div className="field"><label>SKMult <span>{s.skm}</span></label><input type="number" value={s.skm} min={.1} step={.1} onChange={e=>u('skm',parseFloat(e.target.value)||1)}/></div>
+          <div className="field"><label>SpSKMod <span>{s.spm}</span></label><input type="number" value={s.spm} min={.1} step={.1} onChange={e=>u('spm',parseFloat(e.target.value)||1)}/></div>
+        </div>
+        <div className="g2">{N('drEnh','Drone Enhance %',10)}{N('drEnhDec','Enemy Decrease %',10)}</div>
+        <div className="mr"><span style={{color:'var(--textm)'}}>DroneED (capped 1–2)</span><span style={{fontFamily:'monospace',color:'var(--acc)'}}>{r.DroneED.toFixed(3)}×</span></div>
+        <div className="sep"/>{N('trPct','Trajectory Refined T %',5)}
+        <div className="mr"><span style={{color:'var(--textm)'}}>TR = 1+T/100</span><span style={{fontFamily:'monospace',color:'var(--acc)'}}>{r.trv.toFixed(3)}×</span></div>
+        <div className="sep"/><div className="g2">{N('dSkIR','DroneSKIR',5,-200)}{N('dNaIR','DroneNAIR',5,-200)}</div>
+      </div>
+      <div className="card" style={{borderColor:'rgba(255,107,53,.3)'}}>
+        <div className="sh" style={{color:'var(--warn)'}}>Résultats drones</div>
+        <div className="cb w"><div className="cl">Drone SK</div><div className="cv">{fmt(r.dskDmg)}</div></div>
+        <div className="cb w"><div className="cl">Drone NA</div><div className="cv">{fmt(r.dnaDmg)}</div></div>
+      </div>
+      <div className="card" style={{borderColor:'rgba(255,68,68,.3)'}}>
+        <div className="sh" style={{color:'var(--red)'}}>Burn</div>
+        <div className="g2">
+          {N('bb','Burn Boost %',5)}
+          <div className="field"><label>Stacks actives <span>{s.bStacks}</span></label><input type="number" value={s.bStacks} min={1} max={6} step={1} onChange={e=>u('bStacks',parseInt(e.target.value)||1)}/></div>
+          <div className="field"><label>Flaming stacks (f) <span>{s.fStacks}</span></label><input type="number" value={s.fStacks} min={0} step={1} onChange={e=>u('fStacks',parseInt(e.target.value)||0)}/></div>
+        </div>
+        <div className="cb r"><div className="cl">BurnContrib. / stack</div><div className="cv">{fmt(r.burnContrib)}</div></div>
+        <div className="cb r"><div className="cl">Burn tick total</div><div className="cv">{fmt(r.burnTick)}</div></div>
+      </div>
+    </>}
+
+    {ct==='mech'&&<>
+      <div className="card">
+        <div className="sh">Sent/Mech</div>
+        <div className="field"><label>SMMult <span>{s.smm}</span></label><input type="number" value={s.smm} min={.1} step={.1} onChange={e=>u('smm',parseFloat(e.target.value)||1)}/></div>
+        <div className="sh" style={{color:'var(--suc)'}}>Dégâts</div>
+        <div className="g2">{N('sEnh','Sentinel Enhance',5)}{N('sEnhDec','Enemy Sent. Dec.',5)}</div>
+        <div className="mr"><span style={{color:'var(--textm)'}}>SEDMULT</span><span style={{fontFamily:'monospace',color:'var(--acc)'}}>{fmtM(r.SEDMULT)}</span></div>
+        <div className="sh" style={{color:'var(--suc)'}}>Heal</div>
+        <div className="g2">{N('hEnh','Heal Enhance',5)}{N('hEnhDec','Enemy Heal Dec.',5)}</div>
+        <div className="mr"><span style={{color:'var(--textm)'}}>HEDMULT</span><span style={{fontFamily:'monospace',color:'var(--acc)'}}>{fmtM(r.HEDMULT)}</span></div>
+      </div>
+      <div className="card" style={{borderColor:'rgba(68,255,136,.3)'}}>
+        <div className="sh" style={{color:'var(--suc)'}}>Résultats</div>
+        <div className="cb s"><div className="cl">Mech — dégâts</div><div className="cv">{fmt(r.mechDmg)}</div></div>
+        <div className="cb s"><div className="cl">Sentinel — dégâts</div><div className="cv">{fmt(r.sentDmg)}</div></div>
+        <div className="cb s"><div className="cl">Mech — heal</div><div className="cv">{fmt(r.mechHeal)}</div></div>
+        <div className="cb s"><div className="cl">Sentinel — heal</div><div className="cv">{fmt(r.sentHeal)}</div></div>
+      </div>
+    </>}
+
+    {ct==='crit'&&<>
+      <div className="card">
+        <div className="sh">Crit Rate</div>
+        <div className="g2">{N('gcr','Global Crit Rate',5)}{N('eCrRes','Enemy Crit Resist.',5)}</div>
+        <div className="mr"><span style={{color:'var(--textm)'}}>GlobalCritRate net</span><span style={{fontFamily:'monospace',color:'var(--gold)'}}>{(r.gcr>=0?'+':'')+r.gcr}</span></div>
+        <div className="g2" style={{marginTop:8}}>{N('mgLCr','MG Local Crit',5)}{N('mgLCrR','Enemy MG Crit R.',5)}</div>
+      </div>
+      <div className="card" style={{borderColor:'rgba(255,204,68,.3)'}}>
+        <div className="cb g"><div className="cl">MG — probabilité crit</div><div className="cv">{r.mgCritP}%{r.mgCritP>=80?' — MAX':''}</div></div>
+      </div>
+      <div className="card"><div className="sh">Hit / Dodge</div><div className="g2">{N('hit','Ton Hit Rate',5)}{N('eDodge','Enemy Dodge Rate',5)}</div></div>
+      <div className="card" style={{borderColor:'rgba(200,136,255,.3)'}}>
+        <div className="cb pu"><div className="cl">Probabilité de toucher</div><div className="cv">{r.hitP}%{r.hitP===20?' — MIN':r.hitP===100?' — 100%':''}</div></div>
+      </div>
+    </>}
+
+    {ct==='timings'&&<>
+      <div className="card"><div className="card-title">Attack Speed %</div><div className="g2">{N('mgSpd','MG Speed %',5)}{N('wgSpd','WG Speed %',5)}{N('msSpd','MS Speed %',5)}{N('dNaSpd','Drone NA Speed %',5)}{N('dSkSpd','Drone SK Speed %',5)}</div></div>
+      <div className="card">
+        <div className="card-title">Cooldowns effectifs</div>
+        {[['Main Gun','0.96s',r.mgCD,r.mgDPS],[' Wing Gun','1.60s',r.wgCD,r.wgDPS],['Missile','4.00s',r.msCD,r.msDPS],['Drone NA','1.00s',r.dnaCD,null],['Drone SK','3.00s',r.dskCD,null]].map(([l,b,cd,dps])=>(
+          <div key={l} style={{background:'var(--surf2)',border:'1px solid var(--bdr)',borderRadius:'var(--rad)',padding:'8px 12px',marginBottom:6}}>
+            <div style={{fontSize:10,color:'var(--textd)',textTransform:'uppercase',letterSpacing:'.06em'}}>{l} — base {b}</div>
+            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginTop:2}}>
+              <span style={{fontFamily:'monospace',fontSize:16,fontWeight:700,color:'var(--acc)'}}>{cd}s</span>
+              {dps&&<span style={{fontSize:12,color:'var(--textm)'}}>DPS ≈ <span style={{color:'var(--acc)',fontFamily:'monospace'}}>{fmt(dps)}/s</span></span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </>}
+  </>);
+}
+
+// ── SETTINGS ──────────────────────────────────────────────────────────────
+function Settings({players,events,exportData,importData}){
+  const impRef=useRef();
+  const[apiKey,setApiKey]=useState(()=>load('wf_apikey',''));
+  const saveKey=()=>{save('wf_apikey',apiKey);alert('Clé sauvegardée !');}
+  return(<>
+    <div className="card" style={{borderColor:'rgba(0,200,255,.25)'}}>
+      <div className="card-title">Clé API Anthropic (pour scan screenshots)</div>
+      <div style={{fontSize:12,color:'var(--textm)',marginBottom:10,lineHeight:1.6}}>
+        Obtiens ta clé sur <span style={{color:'var(--acc)'}}>console.anthropic.com</span> → API Keys → Create key.<br/>
+        Elle est stockée uniquement dans ton appareil, jamais envoyée ailleurs.
+      </div>
+      <div className="field"><label>Clé API (sk-ant-...)</label>
+        <input type="password" value={apiKey} onChange={e=>setApiKey(e.target.value)} placeholder="sk-ant-api03-..."/>
+      </div>
+      <button className="btn btn-p" style={{width:'100%'}} onClick={saveKey}>Sauvegarder la clé</button>
+    </div>
+    <div className="card">
+      <div className="card-title">Sauvegarde des données</div>
+      <div style={{fontSize:12,color:'var(--textm)',marginBottom:10,lineHeight:1.6}}>Données stockées localement (localStorage). Exporte régulièrement pour éviter toute perte.</div>
+      <div className="row" style={{gap:8}}>
+        <button className="btn btn-p flex1" onClick={exportData}>↓ Exporter JSON</button>
+        <button className="btn btn-w flex1" onClick={()=>impRef.current.click()}>↑ Importer JSON</button>
+      </div>
+      <input ref={impRef} type="file" accept=".json" style={{display:'none'}} onChange={e=>{if(e.target.files[0])importData(e.target.files[0]);}}/>
+    </div>
+    <div className="card">
+      <div className="card-title">Statistiques</div>
+      <div className="g2">
+        <div className="stat"><div className="val">{players.length}</div><div className="lbl">Joueurs</div></div>
+        <div className="stat"><div className="val">{events.length}</div><div className="lbl">Events</div></div>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-title">Drones disponibles dans le sélecteur</div>
+      {Object.entries(DRONES).map(([type,{label,list,color}])=>(
+        <div key={type} style={{marginBottom:8}}>
+          <div style={{fontSize:11,color:`var(--${color})`,marginBottom:4,fontWeight:600}}>{label}</div>
+          <div style={{display:'flex',flexWrap:'wrap',gap:3}}>
+            {list.map(d=><span key={d} className={`badge b${type==='burn'?'w':type==='elec'?'p':type==='refl'?'a':type==='shld'?'s':type==='mech'?'g':'a'}`}>{d}</span>)}
+          </div>
+        </div>
+      ))}
+      <div style={{marginTop:8,fontSize:11,color:'var(--textd)'}}>Un drone manquant ? Utilise le champ "Saisie libre" dans la fiche joueur → Build.</div>
+    </div>
+  </>);
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
 </body>
